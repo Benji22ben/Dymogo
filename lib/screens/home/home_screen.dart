@@ -91,12 +91,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (_) => const CameraScreen(),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const CameraScreen(),
+                              ),
+                            );
                           },
                           child: const Text(
                             "Report",
