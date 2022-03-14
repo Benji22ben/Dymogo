@@ -6,11 +6,13 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
-import 'package:dymogo/screens/home/home_screen.dart';
+import 'package:dymogo/views/home/home_screen.dart';
 
 late List<CameraDescription> cameras;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Obtain a list of the available cameras on the device.
   cameras = await availableCameras();
 
   runApp(const App());
