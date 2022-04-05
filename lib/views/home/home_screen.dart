@@ -123,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {},
                           child: const Text(
-                            "Log In",
+                            "Sign In",
                             style:
                                 TextStyle(fontSize: 14, color: kPrimaryColor),
                           ),
@@ -143,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {},
                           child: const Text(
-                            "Sign In",
+                            "Sign Up",
                             style:
                                 TextStyle(fontSize: 14, color: kPrimaryColor),
                           ),
