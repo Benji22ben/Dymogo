@@ -18,7 +18,9 @@ Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
           borderRadius: BorderRadius.circular(60),
         ),
         child: GestureDetector(
-          onTap: (PictureService.takePicture(context, _initializeControllerFuture, _cameraController)),
+          onTap: (() => {}),
+          // (PictureService.takePicture(
+          // context, _initializeControllerFuture, _cameraController)),
           // onTap: (() async {
           //   // Take the Picture in a try / catch block. If anything goes wrong,
           //   // catch the error.
@@ -48,7 +50,7 @@ Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
           //     print(e);
           //   }
           // }
-          ),
+          // ),
           child: const CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 33,

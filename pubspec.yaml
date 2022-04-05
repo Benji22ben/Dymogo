@@ -41,6 +41,7 @@ dependencies:
   simple_shadow: ^0.3.0
   assorted_layout_widgets: ^5.5.0
   google_fonts: ^2.3.0
+  tflite:
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
     - assets/images/
     - assets/images/camera_screen/
     - assets/images/prediction_screen/
+    - assets/dymogo_ia_tflite/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
