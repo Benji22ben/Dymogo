@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dymogo/main.dart';
 import 'package:dymogo/views/camera/build_camera_preview.dart';
+import 'package:tflite/tflite.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -26,6 +27,8 @@ class _CameraScreenState extends State<CameraScreen> {
       // Define the resolution to use.
       ResolutionPreset.ultraHigh,
     );
+
+    loadModel();
 
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _cameraController.initialize();
@@ -55,5 +58,18 @@ class _CameraScreenState extends State<CameraScreen> {
             }
           },
         ));
+  }
+}
+
+Future loadModel() async {
+  Tflite.close();
+  try {
+    String? res = await Tflite.loadModel(
+      model: "assets/dymogo_ia_tflite/saved_model.tflite",
+      labels: "assets/dymogo_ia_tflite/lables.txt",
+    );
+    print(res);
+  } on PlatformException {
+    print('Failed to load model.');
   }
 }

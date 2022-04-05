@@ -1,8 +1,9 @@
+import 'package:dymogo/viewmodel/camera/picture_service.dart';
+import 'package:dymogo/views/utilities/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dymogo/views/predictions/predictions_screen.dart';
 import 'package:dymogo/viewmodel/camera/api_service.dart';
-import 'package:dymogo/viewmodel/camera/picture_service.dart';
 
 Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
   return Padding(
@@ -18,7 +19,10 @@ Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
           borderRadius: BorderRadius.circular(60),
         ),
         child: GestureDetector(
-          onTap: (() => {}),
+          onTap: (() async => {
+                await getIt<PictureService>().takePicture(
+                    context, _initializeControllerFuture, _cameraController)
+              }),
           // (PictureService.takePicture(
           // context, _initializeControllerFuture, _cameraController)),
           // onTap: (() async {
