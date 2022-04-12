@@ -5,7 +5,7 @@ import 'package:dymogo/viewmodel/camera/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 
-class PictureService {
+class CameraService {
   takePicture(context, _initializeControllerFuture, _cameraController) async {
     // Take the Picture in a try / catch block. If anything goes wrong,
     // catch the error.

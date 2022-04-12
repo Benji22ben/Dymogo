@@ -74,6 +74,7 @@ flutter:
     - assets/images/camera_screen/
     - assets/images/prediction_screen/
     - assets/dymogo_ia_tflite/
+    - assets/images/login_screen/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
