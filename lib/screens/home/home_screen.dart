@@ -4,7 +4,8 @@ import 'package:simple_shadow/simple_shadow.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/size_config.dart';
-import 'package:dymogo/screens/camera/camera_screen.dart';
+//import 'package:dymogo/screens/camera/camera_screen.dart';
+import 'package:dymogo/screens/login/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -91,12 +92,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const CameraScreen(),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (_) => const CameraScreen(),
+                            //   ),
+                            // );
                           },
                           child: const Text(
                             "Report",
@@ -123,7 +124,14 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.transparent,
                         ),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const LoginScreen(),
+                              ),
+                            );
+                          },
                           child: const Text(
                             "Log In",
                             style:
