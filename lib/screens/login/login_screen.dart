@@ -55,46 +55,57 @@ class LoginScreen extends StatelessWidget {
                       height: 95,
                       width: 100,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [kPrimaryColor, kSecondaryColor]),
+                    Container(
+                      width: 250,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 125,
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                  colors: [kPrimaryColor, kSecondaryColor]),
+                              border: Border.all(
+                                color: Colors.transparent,
                               ),
-                              child: TextButton(
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              color: kPrimaryColor,
+                            ),
+                            child: TextButton(
+                              
                               onPressed: () {
+                    
+                              },
+                              child: const Text(
                                 
-                              },
-                              child: const Text(
-                                "Log in",
-                                style: TextStyle(color: Colors.white),
-                                textAlign: TextAlign.justify,
-                                ))
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            TextButton(
+                                "Log In",
+                                style: TextStyle(fontSize: 16, color: Colors.white ),
+                              ),
+                            )),
+                          Container(
+                            width: 120,
+                            
+                            child: TextButton(
+                              
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (_) => const SignInScreen(),
-                                //   ),
-                                // );
+                    
                               },
                               child: const Text(
-                                "Sign in",
-                                style: TextStyle(color: kSecondaryColor),
-                                ))
-                          ],
-                        )
-                      ],
+                                
+                                "Sign In",
+                                style: TextStyle(fontSize: 16, color: kSecondaryColor ),
+                              ),
+                            )),
+                        ],
+                      ) ,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          
+                        ),
+                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      )
+                      
                     ),
                     const FormWidget(),
                   ],
