@@ -1,0 +1,5 @@
+autre
+dechet
+egout
+graph
+voiture
