@@ -1,4 +1,4 @@
-import 'package:dymogo/viewmodel/camera/picture_service.dart';
+import 'package:dymogo/viewmodel/camera/camera_service.dart';
 import 'package:dymogo/views/utilities/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +20,7 @@ Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
         ),
         child: GestureDetector(
           onTap: (() async => {
-                await getIt<PictureService>().takePicture(
+                await getIt<CameraService>().takePicture(
                     context, _initializeControllerFuture, _cameraController)
               }),
           // (PictureService.takePicture(
