@@ -1,4 +1,4 @@
-import 'package:dymogo/views/signup/signup_screen.dart';
+import 'package:dymogo/views/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simple_shadow/simple_shadow.dart';
@@ -6,8 +6,8 @@ import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/size_config.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,24 @@ class LoginScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                                width: 125,
+                                width: 124,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => const LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    "Log In",
+                                    style: TextStyle(
+                                        fontSize: 16, color: kSecondaryColor),
+                                  ),
+                                )),
+                            Container(
+                                width: 124,
                                 decoration: BoxDecoration(
                                   gradient: const LinearGradient(
                                       colors: [kPrimaryColor, kSecondaryColor]),
@@ -76,26 +93,9 @@ class LoginScreen extends StatelessWidget {
                                 child: TextButton(
                                   onPressed: () {},
                                   child: const Text(
-                                    "Log In",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                  ),
-                                )),
-                            Container(
-                                width: 120,
-                                child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const SignUpScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text(
                                     "Sign Up",
                                     style: TextStyle(
-                                        fontSize: 16, color: kSecondaryColor),
+                                        fontSize: 16, color: Colors.white),
                                   ),
                                 )),
                           ],
@@ -179,10 +179,34 @@ class _FormWidgetState extends State<FormWidget> {
                         enableSuggestions: false,
                         autocorrect: false,
                         decoration: const InputDecoration(
-                            helperText: 'Forgot your password ?',
                             labelText: 'Password',
                             floatingLabelStyle: TextStyle(color: kPrimaryColor),
                             hintText: 'Your password'),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment.topLeft,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        decoration: const InputDecoration(
+                            labelText: 'Confirm password',
+                            floatingLabelStyle: TextStyle(color: kPrimaryColor),
+                            hintText: 'Confirm your password'),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your password';
@@ -216,7 +240,7 @@ class _FormWidgetState extends State<FormWidget> {
                   }
                 },
                 child: const Text(
-                  "Log In",
+                  "Sign up",
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               )),
@@ -225,7 +249,7 @@ class _FormWidgetState extends State<FormWidget> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const SignUpScreen(),
+                    builder: (_) => const LoginScreen(),
                   ),
                 );
               },
@@ -237,7 +261,7 @@ class _FormWidgetState extends State<FormWidget> {
                     Column(
                       children: const [
                         Text(
-                          "No account ? ",
+                          "Already have an account ? ",
                           style: TextStyle(fontSize: 14, color: Colors.grey),
                         )
                       ],
@@ -245,7 +269,7 @@ class _FormWidgetState extends State<FormWidget> {
                     Column(
                       children: const [
                         Text(
-                          "Sign up",
+                          "Log in",
                           style:
                               TextStyle(fontSize: 14, color: kSecondaryColor),
                         )

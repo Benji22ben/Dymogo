@@ -29,10 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  camera: 
+  camera:
   provider: ^6.0.2
-  http: 
-
+  http:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -43,6 +42,9 @@ dependencies:
   google_fonts: ^2.3.0
   tflite:
   get_it: ^7.2.0
+  flutter_map: ^0.14.0
+  latlong2: ^0.8.1
+  location: ^4.3.0
 
 dev_dependencies:
   flutter_test:
