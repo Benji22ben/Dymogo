@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dymogo/main.dart';
 import 'package:dymogo/views/camera/build_camera_preview.dart';
-import 'package:tflite/tflite.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -21,6 +19,7 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     super.initState();
+
     _cameraController = CameraController(
       // Get a specific camera from the list of available cameras.
       cameras.first,
@@ -28,10 +27,13 @@ class _CameraScreenState extends State<CameraScreen> {
       ResolutionPreset.ultraHigh,
     );
 
-    loadModel();
-
     // Next, initialize the controller. This returns a Future.
-    _initializeControllerFuture = _cameraController.initialize();
+    _initializeControllerFuture = _cameraController.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
   }
 
   @override
@@ -58,18 +60,5 @@ class _CameraScreenState extends State<CameraScreen> {
             }
           },
         ));
-  }
-}
-
-Future loadModel() async {
-  Tflite.close();
-  try {
-    String? res = await Tflite.loadModel(
-      model: "assets/dymogo_ia_tflite/saved_model.tflite",
-      labels: "assets/dymogo_ia_tflite/lables.txt",
-    );
-    print(res);
-  } on PlatformException {
-    print('Failed to load model.');
   }
 }

@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
 
 class PredictionScreen extends StatelessWidget {
   final String imagePath;
-  final Map response;
+  final List response;
 
   const PredictionScreen(
       {Key? key, required this.imagePath, required this.response})
@@ -19,7 +18,8 @@ class PredictionScreen extends StatelessWidget {
     if (label == 'graph') {
       label = 'Graffiti';
     }
-    final percent = response[0]['percent'].toString();
+    var number = response[0]['confidence'];
+    final percent = (number * 100).round().toString();
     return Scaffold(
       body: Stack(children: [
         Stack(children: [
@@ -39,9 +39,7 @@ class PredictionScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      capitalize(label),
-                    ),
+                    Text(capitalize(label)),
                     Text(percent + '%'),
                   ],
                 )),
