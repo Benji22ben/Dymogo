@@ -7,7 +7,6 @@ import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/size_config.dart';
 import 'package:dymogo/views/camera/camera_screen.dart';
-//import 'package:dymogo/screens/camera/camera_screen.dart';
 import 'package:dymogo/views/login/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
