@@ -150,6 +150,7 @@ class PredictionScreen extends StatelessWidget {
             width: size.width,
             height: size.height,
             decoration: const BoxDecoration(color: Colors.transparent),
+            constraints: const BoxConstraints.expand(),
             child: const CircularProgressIndicator(),
           );
         }
