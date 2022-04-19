@@ -1,11 +1,17 @@
+import 'package:dymogo/views/camera/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CameraHeaderBar extends StatelessWidget {
-  const CameraHeaderBar({Key? key, required this.top, required this.color})
-      : super(key: key);
+  const CameraHeaderBar({
+    Key? key,
+    required this.top,
+    required this.color,
+    this.toPage = "null",
+  }) : super(key: key);
   final double top;
   final Color color;
+  final String toPage;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,20 @@ class CameraHeaderBar extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => {
-              Navigator.pop(context),
+              if (toPage == 'camera')
+                {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const CameraScreen()))
+                      .then((value) {
+                    const CameraScreen().initState();
+                  })
+                }
+              else
+                {
+                  Navigator.pop(context),
+                }
             },
             child: Icon(
               Icons.arrow_back,

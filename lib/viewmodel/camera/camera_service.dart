@@ -13,29 +13,41 @@ class CameraService {
       // Ensure that the camera is initialized.
       await _initializeControllerFuture;
 
-      // Attempt to take a picture and then get the location
-      // where the image file is saved.
-
+      // Attempt to take a picture
       final image = await _cameraController.takePicture();
-      // const image = "assets/images/photoExemple.png";
 
       print("IMAGE PRISE");
-      var response = await recognizeImageBinary(image);
 
       await Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => PredictionScreen(
-            response: response,
-            imagePath: image.path,
+            image: image,
           ),
         ),
       );
+      closeCameraAndStream(_cameraController);
     } catch (e) {
-      print(e);
+      return AlertDialog(
+        title: const Text('AlertDialog Title'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text('There is an error with the camera'),
+            ],
+          ),
+        ),
+      );
     }
   }
 
-  Uint8List imageToByteListFloat32(
+  void closeCameraAndStream(CameraController _cameraController) async {
+    if (_cameraController.value.isStreamingImages) {
+      await _cameraController.stopImageStream();
+    }
+    await _cameraController.dispose();
+  }
+
+  static Uint8List imageToByteListFloat32(
       img.Image image, int inputSize, double mean, double std) {
     var convertedBytes = Float32List(1 * inputSize * inputSize * 3);
     var buffer = Float32List.view(convertedBytes.buffer);
@@ -51,7 +63,7 @@ class CameraService {
     return convertedBytes.buffer.asUint8List();
   }
 
-  Future recognizeImageBinary(XFile image) async {
+  static Future recognizeImageBinary(XFile image) async {
     await Tflite.loadModel(
       model: "assets/dymogo_ia_tflite/saved_model.tflite",
       labels: "assets/dymogo_ia_tflite/labels.txt",

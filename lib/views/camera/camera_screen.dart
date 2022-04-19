@@ -10,6 +10,8 @@ class CameraScreen extends StatefulWidget {
 
   @override
   State<CameraScreen> createState() => _CameraScreenState();
+
+  void initState() {}
 }
 
 class _CameraScreenState extends State<CameraScreen> {
