@@ -211,9 +211,9 @@ class _FormWidgetState extends State<FormWidget> {
               ),
               child: TextButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Process data.
-                  }
+                  // if (_formKey.currentState!.validate()) {
+                  //   // Process data.
+                  // }
                 },
                 child: const Text(
                   "Log In",

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:dymogo/views/end/end_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
@@ -101,12 +102,12 @@ class PredictionScreen extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (_) => const CameraScreen(),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const EndScreen(),
+                              ),
+                            );
                           },
                           child: const Text(
                             "It’s perfect !",
