@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tflite/tflite.dart';
 
@@ -6,13 +7,13 @@ class IAService {
   Future loadModel() async {
     Tflite.close();
     try {
-      String? res = await Tflite.loadModel(
+      await Tflite.loadModel(
         model: "assets/dymogo_ia_tflite/saved_model.tflite",
         labels: "assets/dymogo_ia_tflite/lables.txt",
       );
-      print(res);
     } on PlatformException {
       print('Failed to load model.');
+      return const AlertDialog(semanticLabel: 'Failed To load Model.');
     }
   }
 

@@ -2,11 +2,9 @@ import 'package:location/location.dart';
 
 class LocationService {
   Future locationGet() async {
-    Location location = new Location();
+    Location location = Location();
     late bool _serviceEnabled;
     late PermissionStatus _permissionGranted;
-    late LocationData _locationData;
-    bool _isGetLocation = false;
 
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {

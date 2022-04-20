@@ -15,7 +15,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  Location location = new Location();
+  Location location = Location();
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
   late LocationData _locationData;
@@ -23,7 +23,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var first;
     return Scaffold(
       body: Center(
         child: Column(

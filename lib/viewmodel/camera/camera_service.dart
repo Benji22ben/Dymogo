@@ -12,11 +12,12 @@ class CameraService {
     try {
       // Ensure that the camera is initialized.
       await _initializeControllerFuture;
+      _cameraController.setFlashMode(FlashMode.off);
 
       // Attempt to take a picture
       final image = await _cameraController.takePicture();
 
-      print("IMAGE PRISE");
+      print("Picture Taken");
 
       await Navigator.of(context).push(
         MaterialPageRoute(
@@ -69,8 +70,6 @@ class CameraService {
       labels: "assets/dymogo_ia_tflite/labels.txt",
     );
 
-    int startTime = DateTime.now().millisecondsSinceEpoch;
-
     img.Image? oriImage = img.decodeJpg(await image.readAsBytes());
 
     img.Image resizedImage = img.copyResizeCropSquare(oriImage!, 224);
@@ -82,9 +81,11 @@ class CameraService {
     );
 
     Tflite.close();
-    int endTime = DateTime.now().millisecondsSinceEpoch;
-    print("Inference took ${endTime - startTime}ms");
+
+    // TODO : Delete this
+    // Print model prediction
     print(output);
+
     return output;
   }
 }

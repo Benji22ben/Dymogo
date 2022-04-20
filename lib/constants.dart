@@ -7,3 +7,4 @@ const kDarkTextColor = Color(0xFF4E6661);
 const kGrey = Color(0xFFB5B5B5);
 const kTextColor2 = Color(0xFF4E6661);
 const kShadow = Color(0xA6A6A640);
+const baseUrl = "http://localhost/api/";

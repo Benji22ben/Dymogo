@@ -30,7 +30,7 @@ class CameraHeaderBar extends StatelessWidget {
                               const CameraScreen()))
                       .then((value) {
                     const CameraScreen().initState();
-                  })
+                  }),
                 }
               else
                 {

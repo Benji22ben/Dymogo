@@ -1,8 +1,8 @@
 import 'package:http/http.dart';
-import 'dart:convert';
+import 'package:dymogo/constants.dart';
 
 class ApiService {
-  static const String apiEndpoint = 'http://localhost:8000/api/reports/';
+  static const String apiEndpoint = baseUrl + 'reports/';
 
   static Future uploadFileToServer(
     String imagePath,
@@ -10,7 +10,6 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
-    print("coucou2");
     var request = MultipartRequest(
       'POST',
       Uri.parse(apiEndpoint),
@@ -23,7 +22,6 @@ class ApiService {
 
     var response = await request.send();
     print("Result: ${response.statusCode}");
-    print("coucou3");
     print(response);
     return response;
   }

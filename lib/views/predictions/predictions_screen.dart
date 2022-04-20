@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/camera/camera_service.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:dymogo/viewmodel/camera/api_service.dart';
 
 class PredictionScreen extends StatelessWidget {
@@ -105,7 +104,6 @@ class PredictionScreen extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () async {
-                            print("coucou");
                             var locationData =
                                 await LocationService().locationGet();
                             ApiService.uploadFileToServer(

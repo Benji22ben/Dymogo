@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                                         fontSize: 16, color: Colors.white),
                                   ),
                                 )),
-                            Container(
+                            SizedBox(
                                 width: 120,
                                 child: TextButton(
                                   onPressed: () {

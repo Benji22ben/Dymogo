@@ -28,7 +28,6 @@ class _CameraScreenState extends State<CameraScreen> {
       // Define the resolution to use.
       ResolutionPreset.ultraHigh,
     );
-
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _cameraController.initialize().then((_) {
       if (!mounted) {

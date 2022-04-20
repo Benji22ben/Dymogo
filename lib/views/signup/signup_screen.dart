@@ -61,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 width: 124,
                                 child: TextButton(
                                   onPressed: () {
