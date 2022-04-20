@@ -7,6 +7,7 @@ import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/camera/camera_service.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:dymogo/viewmodel/camera/api_service.dart';
 
 class PredictionScreen extends StatelessWidget {
   final XFile image;
@@ -103,13 +104,23 @@ class PredictionScreen extends StatelessWidget {
                           color: kPrimaryColor,
                         ),
                         child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const EndScreen(),
-                              ),
-                            );
+                          onPressed: () async {
+                            print("coucou");
+                            var locationData =
+                                await LocationService().locationGet();
+                            ApiService.uploadFileToServer(
+                                    image.path,
+                                    label,
+                                    locationData.latitude.toString(),
+                                    locationData.longitude.toString())
+                                .then((value) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const EndScreen(),
+                                ),
+                              );
+                            });
                           },
                           child: const Text(
                             "It’s perfect !",

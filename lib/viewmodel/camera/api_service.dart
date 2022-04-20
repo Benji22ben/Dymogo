@@ -10,18 +10,21 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
+    print("coucou2");
     var request = MultipartRequest(
       'POST',
       Uri.parse(apiEndpoint),
     );
     request.files.add(await MultipartFile.fromPath("picture", imagePath));
     request.fields['folder_picture'] = folderPicture;
-    request.fields['report'];
+    request.fields['report'] = '{}';
     request.fields['location'] =
         '{ "latitude" : "' + latitude + '", "longitude" : ' + longitude + '}';
 
     var response = await request.send();
-
     print("Result: ${response.statusCode}");
+    print("coucou3");
+    print(response);
+    return response;
   }
 }
