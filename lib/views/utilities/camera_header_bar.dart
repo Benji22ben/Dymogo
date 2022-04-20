@@ -24,13 +24,8 @@ class CameraHeaderBar extends StatelessWidget {
             onTap: () => {
               if (toPage == 'camera')
                 {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const CameraScreen()))
-                      .then((value) {
-                    const CameraScreen().initState();
-                  }),
+                  const CameraScreen().initState(),
+                  Navigator.pop(context),
                 }
               else
                 {
