@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:dymogo/views/end/end_screen.dart';
+import 'package:dymogo/viewmodel/map/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/camera/camera_service.dart';
+import 'package:latlong2/latlong.dart';
 
 class PredictionScreen extends StatelessWidget {
   final XFile image;

@@ -25,7 +25,9 @@ Widget buildCameraPreview(
           height: height,
           child: Column(children: [
             const CameraHeaderBar(
-                top: 25, color: Color.fromARGB(255, 255, 255, 255)),
+                top: 25,
+                color: Color.fromARGB(255, 255, 255, 255),
+                toPage: "none"),
             const Spacer(),
             buildCameraUX(
                 context, _cameraController, initializeControllerFuture)
