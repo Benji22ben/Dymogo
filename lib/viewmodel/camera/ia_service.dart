@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tflite/tflite.dart';
-import 'package:tflite/tflite.dart';
 import 'package:image/image.dart' as img;
 import 'dart:typed_data';
 
@@ -24,19 +23,20 @@ class IAService {
   }
 
   static Future recognizeImageBinary(XFile image) async {
-    Tflite.close();
-    try {
-      await Tflite.loadModel(
-        model: "assets/dymogo_ia_tflite/saved_model.tflite",
-        labels: "assets/dymogo_ia_tflite/lables.txt",
-      );
-    } on PlatformException {
-      print('Failed to load model.');
-      return const AlertDialog(semanticLabel: 'Failed To load Model.');
-    }
+    // Tflite.close();
+    // try {
+    String? res = await Tflite.loadModel(
+      labels: "assets/dymogo_ia_tflite/labels.txt",
+      model: "assets/dymogo_ia_tflite/saved_model.tflite",
+    );
+
+    print(res);
+    // } on PlatformException {
+    //   print('Failed to load model.');
+    //   return const AlertDialog(semanticLabel: 'Failed To load Model.');
+    // }
 
     img.Image? oriImage = img.decodeJpg(await image.readAsBytes());
-
     img.Image resizedImage = img.copyResizeCropSquare(oriImage!, 224);
 
     var output = await Tflite.runModelOnBinary(

@@ -76,7 +76,8 @@ flutter:
     - assets/images/
     - assets/images/camera_screen/
     - assets/images/prediction_screen/
-    - assets/dymogo_ia_tflite/
+    - assets/dymogo_ia_tflite/saved_model.tflite
+    - assets/dymogo_ia_tflite/labels.txt
     - assets/images/login_screen/
 
   # An image asset can refer to one or more resolution-specific "variants", see
