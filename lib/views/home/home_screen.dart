@@ -17,8 +17,6 @@ class HomeScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
-    const urlimg = 'assets/images/map.png';
-
     return Scaffold(
         body: Stack(
       children: [
@@ -55,21 +53,28 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 30),
-                    child: const Text(
-                      "WELCOME",
-                      style: TextStyle(
-                        color: kDarkTextColor,
-                        fontSize: 40,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 30, left: 25),
+                      child: const Text(
+                        "WELCOME",
+                        style: TextStyle(
+                          color: kDarkTextColor,
+                          fontSize: 40,
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    child: const Text(
-                      "Do you want to report something ?",
-                      style: TextStyle(
-                        fontSize: 16,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 25),
+                      child: const Text(
+                        "Do you want to report something ?",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),
