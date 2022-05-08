@@ -11,11 +11,16 @@ import 'package:dymogo/viewmodel/camera/api_service.dart';
 
 class PredictionScreen extends StatelessWidget {
   final XFile image;
-  const PredictionScreen({Key? key, required this.image}) : super(key: key);
+  final CameraController controller;
+
+  const PredictionScreen(
+      {Key? key, required this.image, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final _cameraController = controller;
 
     return FutureBuilder(
       future: IAService.recognizeImageBinary(image),
@@ -120,6 +125,7 @@ class PredictionScreen extends StatelessWidget {
                                 ),
                               );
                             });
+                            await _cameraController.dispose();
                           },
                           child: const Text(
                             "It’s perfect !",

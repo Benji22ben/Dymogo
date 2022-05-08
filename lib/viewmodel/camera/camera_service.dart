@@ -21,6 +21,7 @@ class CameraService {
         MaterialPageRoute(
           builder: (context) => PredictionScreen(
             image: image,
+            controller: _cameraController,
           ),
         ),
       );
@@ -39,7 +40,7 @@ class CameraService {
     }
   }
 
-  void closeCamera(CameraController _cameraController) async {
+  Future closeCamera(CameraController _cameraController) async {
     if (_cameraController.value.isStreamingImages) {
       await _cameraController.stopImageStream();
     }
