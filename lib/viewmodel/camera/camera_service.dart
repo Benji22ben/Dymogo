@@ -3,7 +3,8 @@ import 'package:dymogo/views/predictions/predictions_screen.dart';
 import 'package:flutter/material.dart';
 
 class CameraService {
-  takePicture(context, _initializeControllerFuture, _cameraController) async {
+  takePicture(context, _initializeControllerFuture, _cameraController,
+      _cameraOn) async {
     // Take the Picture in a try / catch block. If anything goes wrong,
     // catch the error.
     try {
@@ -23,7 +24,7 @@ class CameraService {
           ),
         ),
       );
-      closeCameraAndStream(_cameraController);
+      _cameraOn = false;
     } catch (e) {
       return AlertDialog(
         title: const Text('Camera Failure'),
@@ -38,7 +39,7 @@ class CameraService {
     }
   }
 
-  void closeCameraAndStream(CameraController _cameraController) async {
+  void closeCamera(CameraController _cameraController) async {
     if (_cameraController.value.isStreamingImages) {
       await _cameraController.stopImageStream();
     }

@@ -145,6 +145,7 @@ class PredictionScreen extends StatelessWidget {
                             //   MaterialPageRoute(
                             //     builder: (_) => const CameraScreen(),
                             //   ),
+                            // CameraService.closeCamera();
                             // );
                           },
                           child: const Text(
@@ -159,13 +160,7 @@ class PredictionScreen extends StatelessWidget {
             ]),
           );
         } else {
-          return Container(
-            width: size.width,
-            height: size.height,
-            decoration: const BoxDecoration(color: Colors.transparent),
-            constraints: const BoxConstraints.expand(),
-            child: const CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

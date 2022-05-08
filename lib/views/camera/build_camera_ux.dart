@@ -3,7 +3,8 @@ import 'package:dymogo/views/utilities/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
+Widget buildCameraUX(
+    context, _cameraController, _initializeControllerFuture, _cameraOn) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 20),
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -18,8 +19,8 @@ Widget buildCameraUX(context, _cameraController, _initializeControllerFuture) {
         ),
         child: GestureDetector(
           onTap: (() async => {
-                await getIt<CameraService>().takePicture(
-                    context, _initializeControllerFuture, _cameraController)
+                await getIt<CameraService>().takePicture(context,
+                    _initializeControllerFuture, _cameraController, _cameraOn),
               }),
           child: const CircleAvatar(
             backgroundColor: Colors.transparent,

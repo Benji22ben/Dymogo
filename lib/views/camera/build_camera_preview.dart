@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'build_camera_ux.dart';
 import 'package:dymogo/size_config.dart';
 
-Widget buildCameraPreview(
-    context, _cameraController, Future<void> initializeControllerFuture) {
+Widget buildCameraPreview(context, _cameraController,
+    Future<void> initializeControllerFuture, _cameraOn) {
   final height = SizeConfig.screenHeight;
   return Container(
     height: height,
@@ -16,9 +16,12 @@ Widget buildCameraPreview(
       child: Stack(children: [
         SizedBox(
           height: height,
-          child: CameraPreview(
-            _cameraController,
-          ),
+          // If camera is On then show the camera preview else keep memory showing a container
+          child: _cameraOn
+              ? CameraPreview(
+                  _cameraController,
+                )
+              : Container(),
         ),
         Container(
           color: Colors.transparent,
@@ -29,8 +32,8 @@ Widget buildCameraPreview(
                 color: Color.fromARGB(255, 255, 255, 255),
                 toPage: "none"),
             const Spacer(),
-            buildCameraUX(
-                context, _cameraController, initializeControllerFuture)
+            buildCameraUX(context, _cameraController,
+                initializeControllerFuture, _cameraOn)
           ]),
         ),
       ]),

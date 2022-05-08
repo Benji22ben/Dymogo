@@ -28,6 +28,7 @@ class _CameraScreenState extends State<CameraScreen> {
       // Define the resolution to use.
       ResolutionPreset.ultraHigh,
     );
+
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _cameraController.initialize().then((_) {
       if (!mounted) {
@@ -46,15 +47,18 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         body: FutureBuilder<void>(
           future: _initializeControllerFuture,
           builder: (context, snapshot) {
+            var _cameraOn = true;
+
             if (snapshot.connectionState == ConnectionState.done) {
               // If the Future is complete, display the preview.
-              return buildCameraPreview(
-                  context, _cameraController, _initializeControllerFuture);
+              return buildCameraPreview(context, _cameraController,
+                  _initializeControllerFuture, _cameraOn);
             } else {
               // Otherwise, display a loading indicator.
               return const Center(child: CircularProgressIndicator());
