@@ -11,109 +11,112 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    const urlimg = 'assets/images/login_screen/bg.png';
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
         body: Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(urlimg), fit: BoxFit.cover)),
+          color: kPrimaryColor,
         ),
-        Align(
-          alignment: Alignment.center,
-          child: ColumnSuper(
-            innerDistance: -85,
-            invert: true,
-            children: [
-              SimpleShadow(
-                opacity: 0.25,
-                offset: const Offset(0, 1),
-                color: kShadow,
-                sigma: 10,
+        Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                margin: const EdgeInsets.only(top: 25, left: 10),
                 child: SvgPicture.asset(
-                  "assets/images/logo.svg",
+                  "assets/images/written_logo.svg",
                 ),
               ),
-              Container(
-                width: SizeConfig.screenWidth! * 0.80,
-                height: SizeConfig.screenHeight! * 0.75,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: screenWidth * 0.25,
+                child: SvgPicture.asset(
+                  "assets/images/w_logo.svg",
+                ),
+              ),
+            ),
+            const Spacer(),
+            Container(
+                width: screenWidth,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(214, 212, 212, 0.25),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                      ),
-                    ]),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 95,
-                      width: 100,
-                    ),
-                    Container(
-                        width: 250,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                                width: 125,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                      colors: [kPrimaryColor, kSecondaryColor]),
-                                  border: Border.all(
-                                    color: Colors.transparent,
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  color: kPrimaryColor,
-                                ),
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "Log In",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                  ),
-                                )),
-                            SizedBox(
-                                width: 120,
-                                child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const SignUpScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        fontSize: 16, color: kSecondaryColor),
-                                  ),
-                                )),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                          ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                        )),
-                    const FormWidget(),
-                  ],
+                  borderRadius: BorderRadius.circular(35),
+                  color: Colors.white,
                 ),
-              ),
-            ],
-          ),
-        )
+                child: Column(children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 30, left: 25),
+                      child: const Text(
+                        "Welcome",
+                        style: TextStyle(
+                          color: kDarkTextColor,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 25),
+                      child: const Text(
+                        "Back",
+                        style: TextStyle(
+                          color: kDarkTextColor,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 25),
+                      child: const Text(
+                        "Log In to your account",
+                        style: TextStyle(
+                          color: kDarkTextColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(25),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: kDarkTextColor,
+                      ),
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                    width: screenWidth * 0.8,
+                    child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      decoration: const InputDecoration(
+                          helperText: 'Forgot your password ?',
+                          labelText: 'Password',
+                          hintText: 'Your password'),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ]))
+          ],
+        ),
       ],
     ));
   }
