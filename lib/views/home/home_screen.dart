@@ -14,157 +14,165 @@ class HomeScreen extends StatelessWidget {
     var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+        extendBodyBehindAppBar: true,
         body: Stack(
-      children: [
-        Container(
-          color: kPrimaryColor,
-        ),
-        Column(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                margin: const EdgeInsets.only(top: 25, left: 10),
-                child: SvgPicture.asset(
-                  "assets/images/written_logo.svg",
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: screenWidth * 0.35,
-                margin: EdgeInsets.only(top: screenHeight * 0.05),
-                child: SvgPicture.asset(
-                  "assets/images/w_logo.svg",
-                ),
-              ),
-            ),
-            const Spacer(),
             Container(
-              width: screenWidth,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                color: Colors.white,
-              ),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 30, left: 25),
-                      child: const Text(
-                        "WELCOME",
-                        style: TextStyle(
-                          color: kDarkTextColor,
-                          fontSize: 40,
-                        ),
-                      ),
+              color: kPrimaryColor,
+            ),
+            Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 25, left: 10),
+                    child: SvgPicture.asset(
+                      "assets/images/written_logo.svg",
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 25),
-                      child: const Text(
-                        "Do you want to report something ?",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    width: screenWidth * 0.35,
+                    margin: EdgeInsets.only(top: screenHeight * 0.05),
+                    child: SvgPicture.asset(
+                      "assets/images/w_logo.svg",
                     ),
                   ),
-                  Container(
-                      width: screenWidth * 0.8,
-                      height: 60,
-                      margin: const EdgeInsets.only(top: 20),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            colors: [kPrimaryColor, kSecondaryColor]),
-                        border: Border.all(
-                          color: Colors.transparent,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
-                        color: kPrimaryColor,
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const CameraScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Report",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      )),
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: const Text(
-                      "or",
-                      style: TextStyle(fontSize: 14, color: kGrey),
-                    ),
+                ),
+                const Spacer(),
+                Container(
+                  width: screenWidth,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30)),
+                    color: Colors.white,
                   ),
-                  Container(
-                      width: screenWidth * 0.8,
-                      height: 60,
-                      margin: const EdgeInsets.only(top: 10),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: kPrimaryColor, width: 2.0),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
-                        color: Colors.transparent,
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const LoginScreen(),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 30, left: 25),
+                          child: const Text(
+                            "WELCOME",
+                            style: TextStyle(
+                              color: kDarkTextColor,
+                              fontSize: 40,
                             ),
-                          );
-                        },
-                        child: const Text(
-                          "Sign In",
-                          style: TextStyle(fontSize: 14, color: kPrimaryColor),
+                          ),
                         ),
-                      )),
-                  Container(
-                      width: screenWidth * 0.8,
-                      height: 60,
-                      margin: const EdgeInsets.only(top: 10, bottom: 30),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            colors: [kPrimaryColor, kSecondaryColor]),
-                        border: Border.all(color: kPrimaryColor, width: 2.0),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
-                        color: Colors.transparent,
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const SignUpScreen(),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 25),
+                          child: const Text(
+                            "Do you want to report something ?",
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
-                          );
-                        },
-                        child: const Text(
-                          "Sign Up",
-                          style: TextStyle(fontSize: 14, color: kPrimaryColor),
+                          ),
                         ),
-                      )),
-                ],
-              ),
-            )
+                      ),
+                      Container(
+                          width: screenWidth * 0.8,
+                          height: 60,
+                          margin: const EdgeInsets.only(top: 20),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                                colors: [kPrimaryColor, kSecondaryColor]),
+                            border: Border.all(
+                              color: Colors.transparent,
+                            ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                            color: kPrimaryColor,
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const CameraScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Report",
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          )),
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        child: const Text(
+                          "or",
+                          style: TextStyle(fontSize: 14, color: kGrey),
+                        ),
+                      ),
+                      Container(
+                          width: screenWidth * 0.8,
+                          height: 60,
+                          margin: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: kPrimaryColor, width: 2.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                            color: Colors.transparent,
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Sign In",
+                              style:
+                                  TextStyle(fontSize: 14, color: kPrimaryColor),
+                            ),
+                          )),
+                      Container(
+                          width: screenWidth * 0.8,
+                          height: 60,
+                          margin: const EdgeInsets.only(top: 10, bottom: 30),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                                colors: [kPrimaryColor, kSecondaryColor]),
+                            border:
+                                Border.all(color: kPrimaryColor, width: 2.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                            color: Colors.transparent,
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const SignUpScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Sign Up",
+                              style:
+                                  TextStyle(fontSize: 14, color: kPrimaryColor),
+                            ),
+                          )),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ],
-        ),
-      ],
-    ));
+        ));
   }
 }
