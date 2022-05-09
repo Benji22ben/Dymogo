@@ -90,20 +90,47 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: kDarkTextColor,
-                      ),
-                      borderRadius: BorderRadius.circular(35),
-                    ),
+                    margin: const EdgeInsets.only(top: 25),
                     width: screenWidth * 0.8,
                     child: TextFormField(
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
                       decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kTextInputBg),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          fillColor: kTextInputBg,
+                          filled: true,
+                          labelText: 'Username',
+                          hintText: 'Your username'),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your username';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25),
+                    width: screenWidth * 0.8,
+                    child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kTextInputBg),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          fillColor: kTextInputBg,
+                          filled: true,
                           helperText: 'Forgot your password ?',
+                          helperStyle:
+                              TextStyle(color: kDarkTextColor, fontSize: 11),
+                          prefixIcon: Icon(Icons.lock),
                           labelText: 'Password',
                           hintText: 'Your password'),
                       validator: (String? value) {
@@ -112,6 +139,41 @@ class LoginScreen extends StatelessWidget {
                         }
                         return null;
                       },
+                    ),
+                  ),
+                  Container(
+                      width: screenWidth * 0.8,
+                      height: 60,
+                      margin: const EdgeInsets.only(top: 50),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [kPrimaryColor, kSecondaryColor]),
+                        border: Border.all(
+                          color: Colors.transparent,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
+                        color: kPrimaryColor,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          // Navigator.push(
+                          // context,
+                          // MaterialPageRoute(
+                          // builder: (_) => const CameraScreen(),
+                          // ),
+                          // );
+                        },
+                        child: const Text(
+                          "Sign In",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      )),
+                  Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: const Text(
+                      "or",
+                      style: TextStyle(fontSize: 14, color: kDarkTextColor),
                     ),
                   ),
                 ]))

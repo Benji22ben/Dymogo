@@ -1,5 +1,6 @@
 import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/views/camera/camera_screen.dart';
@@ -18,6 +19,8 @@ class HomeScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
+              width: screenWidth,
+              height: screenHeight,
               color: kPrimaryColor,
             ),
             Column(
@@ -25,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    margin: const EdgeInsets.only(top: 25, left: 10),
+                    margin: const EdgeInsets.only(left: 10),
                     child: SvgPicture.asset(
                       "assets/images/written_logo.svg",
                     ),
