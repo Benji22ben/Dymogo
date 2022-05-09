@@ -155,7 +155,7 @@ class PredictionScreen extends StatelessWidget {
                             // );
                           },
                           child: const Text(
-                            "I want to correct",
+                            "Correct",
                             style:
                                 TextStyle(fontSize: 18, color: kPrimaryColor),
                           ),

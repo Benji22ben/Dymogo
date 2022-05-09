@@ -1,285 +1,221 @@
-import 'package:dymogo/views/login/login_screen.dart';
+import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/size_config.dart';
+import 'package:dymogo/views/login/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    const urlimg = 'assets/images/login_screen/bg.png';
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
         body: Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(urlimg), fit: BoxFit.cover)),
+          color: kPrimaryColor,
         ),
-        Align(
-          alignment: Alignment.center,
-          child: ColumnSuper(
-            innerDistance: -85,
-            invert: true,
-            children: [
-              SimpleShadow(
-                opacity: 0.25,
-                offset: const Offset(0, 1),
-                color: kShadow,
-                sigma: 10,
+        Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                margin: const EdgeInsets.only(top: 25, left: 10),
                 child: SvgPicture.asset(
-                  "assets/images/logo.svg",
+                  "assets/images/written_logo.svg",
                 ),
               ),
-              Container(
-                width: SizeConfig.screenWidth! * 0.80,
-                height: SizeConfig.screenHeight! * 0.75,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(214, 212, 212, 0.25),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                      ),
-                    ]),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 95,
-                      width: 100,
-                    ),
-                    Container(
-                        width: 250,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: 124,
-                                child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const LoginScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Log In",
-                                    style: TextStyle(
-                                        fontSize: 16, color: kSecondaryColor),
-                                  ),
-                                )),
-                            Container(
-                                width: 124,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                      colors: [kPrimaryColor, kSecondaryColor]),
-                                  border: Border.all(
-                                    color: Colors.transparent,
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  color: kPrimaryColor,
-                                ),
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                  ),
-                                )),
-                          ],
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                height: screenHeight * 0.20,
+                width: screenWidth * 0.25,
+                child: SvgPicture.asset(
+                  "assets/images/w_logo.svg",
+                ),
+              ),
+            ),
+            const Spacer(),
+            Container(
+                width: screenWidth,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)),
+                  color: Colors.white,
+                ),
+                child: Column(children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 30, left: 25),
+                      child: const Text(
+                        "Hello",
+                        style: TextStyle(
+                          color: kDarkTextColor,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
                         ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 25),
+                      child: const Text(
+                        "Register a new account",
+                        style: TextStyle(
+                          color: kDarkTextColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25),
+                    width: screenWidth * 0.8,
+                    child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kTextInputBg),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
                           ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                        )),
-                    const FormWidget(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        )
+                          fillColor: kTextInputBg,
+                          filled: true,
+                          labelText: 'Username',
+                          hintText: 'Your username'),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your username';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25),
+                    width: screenWidth * 0.8,
+                    child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kTextInputBg),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          fillColor: kTextInputBg,
+                          filled: true,
+                          helperStyle:
+                              TextStyle(color: kDarkTextColor, fontSize: 11),
+                          prefixIcon: Icon(Icons.lock),
+                          labelText: 'Password',
+                          hintText: 'Your password'),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25),
+                    width: screenWidth * 0.8,
+                    child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kTextInputBg),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          fillColor: kTextInputBg,
+                          filled: true,
+                          helperStyle:
+                              TextStyle(color: kDarkTextColor, fontSize: 11),
+                          prefixIcon: Icon(Icons.lock),
+                          labelText: 'Confirm Password',
+                          hintText: 'Type the password a second time'),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Container(
+                      width: screenWidth * 0.8,
+                      height: 60,
+                      margin: const EdgeInsets.only(top: 50),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [kPrimaryColor, kSecondaryColor]),
+                        border: Border.all(
+                          color: Colors.transparent,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
+                        color: kPrimaryColor,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          // Navigator.push(
+                          // context,
+                          // MaterialPageRoute(
+                          // builder: (_) => const CameraScreen(),
+                          // ),
+                          // );
+                        },
+                        child: const Text(
+                          "Sign In",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      )),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'No account ?',
+                          style: TextStyle(color: kDarkTextColor, fontSize: 11),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const LoginScreen(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Sign in',
+                            style:
+                                TextStyle(color: kPrimaryColor, fontSize: 11),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ]))
+          ],
+        ),
       ],
     ));
-  }
-}
-
-class FormWidget extends StatefulWidget {
-  const FormWidget({Key? key}) : super(key: key);
-
-  @override
-  State<FormWidget> createState() => _FormWidgetState();
-}
-
-class _FormWidgetState extends State<FormWidget> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 40, right: 40),
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.topLeft,
-                          ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'Username',
-                              floatingLabelStyle:
-                                  TextStyle(color: kPrimaryColor),
-                              hintText: 'Your username',
-                            ),
-                            validator: (String? value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your username';
-                              }
-                              return null;
-                            },
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    children: [
-                      const Align(
-                        alignment: Alignment.topLeft,
-                      ),
-                      TextFormField(
-                        obscureText: true,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        decoration: const InputDecoration(
-                            labelText: 'Password',
-                            floatingLabelStyle: TextStyle(color: kPrimaryColor),
-                            hintText: 'Your password'),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your password';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    children: [
-                      const Align(
-                        alignment: Alignment.topLeft,
-                      ),
-                      TextFormField(
-                        obscureText: true,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        decoration: const InputDecoration(
-                            labelText: 'Confirm password',
-                            floatingLabelStyle: TextStyle(color: kPrimaryColor),
-                            hintText: 'Confirm your password'),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your password';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Container(
-              width: 250,
-              height: 70,
-              margin: const EdgeInsets.only(top: 20),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [kPrimaryColor, kSecondaryColor]),
-                border: Border.all(
-                  color: Colors.transparent,
-                ),
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                color: kPrimaryColor,
-              ),
-              child: TextButton(
-                onPressed: () {
-                  // if (_formKey.currentState!.validate()) {
-                  //   // Process data.
-                  // }
-                },
-                child: const Text(
-                  "Sign up",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              )),
-          InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const LoginScreen(),
-                  ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: const [
-                        Text(
-                          "Already have an account ? ",
-                          style: TextStyle(fontSize: 14, color: Colors.grey),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text(
-                          "Log in",
-                          style:
-                              TextStyle(fontSize: 14, color: kSecondaryColor),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ))
-        ],
-      ),
-    );
   }
 }
