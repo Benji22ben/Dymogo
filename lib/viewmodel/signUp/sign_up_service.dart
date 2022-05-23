@@ -12,14 +12,15 @@ class SignUp {
     String password,
   ) async {
     var request = Request('POST', Uri.parse(apiEndpoint));
-    request.headers['Content-Type'] =
-        'application/x-www-form-urlencoded; charset=UTF-8';
-    request.bodyFields = <String, String>{
-      'name': username.replaceAll(' ', ''),
-      'email': email.replaceAll(' ', ''),
-      'password': password.replaceAll(' ', ''),
-    };
+    request.headers['Content-Type'] = 'application/json';
 
+    request.body = jsonEncode(<String, String>{
+      // 'name': username.replaceAll(' ', ''),
+      'email': email.replaceAll(' ', ''),
+      'password': password.replaceAll(' ', '')
+    });
+    print(request.body);
+    print(request);
     var response = await request.send();
 
     print(response.statusCode);

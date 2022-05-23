@@ -11,10 +11,12 @@ class SignIn {
     String password,
   ) async {
     var request = Request('POST', Uri.parse(apiEndpoint));
-    request.bodyFields = <String, String>{
+    request.headers['Content-Type'] = 'application/json';
+
+    request.body = jsonEncode(<String, String>{
       'email': email.replaceAll(' ', ''),
       'password': password.replaceAll(' ', '')
-    };
+    });
     var response = await request.send();
 
     var token = response.statusCode == 200

@@ -1,5 +1,5 @@
 import 'package:dymogo/constants.dart';
-import 'package:dymogo/screens/register_screen/register_screen.dart';
+import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -89,7 +89,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       //Exemple de case : redirection page de register
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => RegisterScreen(),
+          builder: (context) => const SignUpScreen(),
         ));
         break;
     }

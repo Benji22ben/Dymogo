@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:dymogo/viewmodel/camera/ia_service.dart';
 import 'package:dymogo/views/end/end_screen.dart';
 import 'package:dymogo/viewmodel/map/location_service.dart';
+import 'package:dymogo/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
@@ -112,6 +113,7 @@ class PredictionScreen extends StatelessWidget {
                           onPressed: () async {
                             var locationData =
                                 await LocationService().locationGet();
+                            await _cameraController.dispose();
                             ApiService.uploadFileToServer(
                                     image.path,
                                     label,
@@ -121,11 +123,10 @@ class PredictionScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => const EndScreen(),
+                                  builder: (_) => const HomeScreen(),
                                 ),
                               );
                             });
-                            await _cameraController.dispose();
                           },
                           child: const Text(
                             "It’s perfect !",

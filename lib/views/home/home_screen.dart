@@ -1,4 +1,5 @@
 import 'package:dymogo/views/signup/signup_screen.dart';
+import 'package:dymogo/widgets/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
@@ -15,10 +16,15 @@ class HomeScreen extends StatelessWidget {
     var screenHeight = MediaQuery.of(context).size.height;
 
     // Create storage
-    final storage = const FlutterSecureStorage();
+    // final storage = const FlutterSecureStorage();
     // var token = await storage.read(key: 'token');
 
     return Scaffold(
+        endDrawer: NavigationDrawerWidget(),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(0, 255, 255, 255),
+          elevation: 0.0,
+        ),
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
