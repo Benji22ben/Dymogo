@@ -80,15 +80,12 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
-<<<<<<< HEAD
     - assets/images/camera_screen/
     - assets/images/prediction_screen/
     - assets/dymogo_ia_tflite/saved_model.tflite
     - assets/dymogo_ia_tflite/labels.txt
     - assets/images/login_screen/
-=======
     - assets/images/register/
->>>>>>> eb59074 (SplashScreen + navigator)
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
