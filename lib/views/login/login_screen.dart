@@ -1,8 +1,10 @@
+import 'package:dymogo/viewmodel/signIn/sign_in_service.dart';
+import 'package:dymogo/views/home/home_screen.dart';
 import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
-import 'package:dymogo/viewmodel/loginViewModel/loginViewModel.dart';
+import 'package:dymogo/viewmodel/signIn/sign_in_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -183,10 +185,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: TextButton(
                             onPressed: () async {
-                              var token = await LoginViewModel.login(
-                                  _usernameController.text,
-                                  _passwordController.text);
-                              await storage.write(key: "token", value: token);
+                              var token = await SignIn.signIn(
+                                      _usernameController.text,
+                                      _passwordController.text)
+                                  .then((token) => {
+                                        storage.write(
+                                            key: "token", value: token)
+                                      });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const HomeScreen(),
+                                ),
+                              );
                             },
                             child: const Text(
                               "Sign In",
