@@ -11,4 +11,4 @@ const kTextInputBg = Color(0xFFF7F7F7);
 const baseUrl
 // =
 //     "http://ec2-15-188-89-241.eu-west-3.compute.amazonaws.com:8000/api/"
-    = "localhost:8002/api/";
+    = "http://localhost:8002/api/";
