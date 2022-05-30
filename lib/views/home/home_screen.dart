@@ -87,6 +87,11 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      authenticated
+                          ? Container()
+                          : Container(
+                              height: 75,
+                            ),
                       Container(
                           width: screenWidth * 0.8,
                           height: 60,
@@ -116,13 +121,15 @@ class HomeScreen extends StatelessWidget {
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
                           )),
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        child: const Text(
-                          "or",
-                          style: TextStyle(fontSize: 14, color: kGrey),
-                        ),
-                      ),
+                      authenticated
+                          ? Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              child: const Text(
+                                "or",
+                                style: TextStyle(fontSize: 14, color: kGrey),
+                              ),
+                            )
+                          : Container(),
                       authenticated
                           ? Container(
                               width: screenWidth * 0.8,
@@ -151,34 +158,39 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ))
                           : Container(),
-                      Container(
-                          width: screenWidth * 0.8,
-                          height: 60,
-                          margin: const EdgeInsets.only(top: 10, bottom: 30),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                                colors: [kPrimaryColor, kSecondaryColor]),
-                            border:
-                                Border.all(color: kPrimaryColor, width: 2.0),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
-                            color: Colors.transparent,
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const SignUpScreen(),
+                      authenticated
+                          ? Container(
+                              width: screenWidth * 0.8,
+                              height: 60,
+                              margin:
+                                  const EdgeInsets.only(top: 10, bottom: 30),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                    colors: [kPrimaryColor, kSecondaryColor]),
+                                border: Border.all(
+                                    color: kPrimaryColor, width: 2.0),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(30)),
+                                color: Colors.transparent,
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const SignUpScreen(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                      fontSize: 14, color: kPrimaryColor),
                                 ),
-                              );
-                            },
-                            child: const Text(
-                              "Sign Up",
-                              style:
-                                  TextStyle(fontSize: 14, color: kPrimaryColor),
-                            ),
-                          )),
+                              ))
+                          : Container(
+                              height: 75,
+                            )
                     ],
                   ),
                 )

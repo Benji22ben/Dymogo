@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dymogo/main.dart';
 import 'package:dymogo/views/camera/build_camera_preview.dart';
+import 'package:dymogo/widgets/navigation_drawer_widget.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -49,6 +50,21 @@ class _CameraScreenState extends State<CameraScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
     return Scaffold(
+        endDrawer: NavigationDrawerWidget(),
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () => {
+              Navigator.pop(context),
+            },
+            child: Icon(
+              Icons.arrow_back,
+              size: 30,
+              color: Colors.white,
+            ),
+          ),
+          backgroundColor: Color.fromARGB(0, 255, 255, 255),
+          elevation: 0.0,
+        ),
         extendBodyBehindAppBar: true,
         body: FutureBuilder<void>(
           future: _initializeControllerFuture,

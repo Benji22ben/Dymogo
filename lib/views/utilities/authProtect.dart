@@ -11,12 +11,12 @@ class AuthProtect {
       DateTime? expiryDate = Jwt.getExpiryDate(token.toString());
       if (expiryDate != null && expiryDate.isAfter(now)) {
         await storage.delete(key: "token");
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     } else {
-      return false;
+      return true;
     }
   }
 }

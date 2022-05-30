@@ -1,5 +1,4 @@
 import 'package:camera/camera.dart';
-import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:flutter/material.dart';
 import 'build_camera_ux.dart';
 
@@ -26,10 +25,6 @@ Widget buildCameraPreview(context, _cameraController,
           color: Colors.transparent,
           height: height,
           child: Column(children: [
-            const CameraHeaderBar(
-                top: 25,
-                color: Color.fromARGB(255, 255, 255, 255),
-                toPage: "none"),
             const Spacer(),
             buildCameraUX(context, _cameraController,
                 initializeControllerFuture, _cameraOn)

@@ -1,9 +1,11 @@
 import 'package:dymogo/constants.dart';
+import 'package:dymogo/views/home/home_screen.dart';
+import 'package:dymogo/views/login/login_screen.dart';
 import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:dymogo/views/utilities/authProtect.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
-  final padding = EdgeInsets.symmetric(horizontal: 20);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -52,13 +54,27 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
-            const SizedBox(height: 220),
+            const SizedBox(height: 200),
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
-            buildMenuItem(
-              text: 'Sign out',
-              icon: Icons.logout,
-            ),
+            FutureBuilder(
+              future: AuthProtect.isTokenValid(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.data == false) {
+                  return buildMenuItem(
+                    text: 'Sign out',
+                    icon: Icons.logout,
+                    onClicked: () => selectedItem(context, 1),
+                  );
+                } else {
+                  return buildMenuItem(
+                    text: 'Sign in',
+                    icon: Icons.login,
+                    onClicked: () => selectedItem(context, 2),
+                  );
+                }
+              },
+            )
           ],
         ),
       ),
@@ -81,7 +97,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
-  void selectedItem(BuildContext context, int index) {
+  Future<void> selectedItem(BuildContext context, int index) async {
     Navigator.of(context).pop();
 
     switch (index) {
@@ -91,6 +107,18 @@ class NavigationDrawerWidget extends StatelessWidget {
           builder: (context) => const SignUpScreen(),
         ));
         break;
+      case 1:
+        await storage.delete(key: "token").then((value) => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomeScreen(
+                        authenticated: true,
+                      )),
+            ));
+        break;
+      case 2:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
     }
   }
 }

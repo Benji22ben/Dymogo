@@ -4,10 +4,10 @@ import 'package:dymogo/viewmodel/camera/ia_service.dart';
 import 'package:dymogo/viewmodel/map/location_service.dart';
 import 'package:dymogo/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/camera/api_service.dart';
 import 'package:dymogo/views/utilities/authProtect.dart';
+import 'package:dymogo/widgets/navigation_drawer_widget.dart';
 
 class PredictionScreen extends StatelessWidget {
   final XFile image;
@@ -38,15 +38,25 @@ class PredictionScreen extends StatelessWidget {
           var number = response[0]['confidence'];
           final percent = (number * 100).round().toString();
           return Scaffold(
+            endDrawer: NavigationDrawerWidget(),
+            appBar: AppBar(
+              leading: GestureDetector(
+                onTap: () => {
+                  Navigator.pop(context),
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+              backgroundColor: Color.fromARGB(0, 255, 255, 255),
+              elevation: 0.0,
+            ),
+            extendBodyBehindAppBar: true,
             body: Stack(children: [
               Stack(children: [
                 Image.file(File(image.path)),
-                // Header Bar With arrow and burger menu
-                const CameraHeaderBar(
-                  top: 25,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  toPage: "camera",
-                ),
                 Center(
                   child: Container(
                       decoration: BoxDecoration(

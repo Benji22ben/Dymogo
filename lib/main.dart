@@ -56,12 +56,10 @@ class SplashScreen extends StatelessWidget {
       duration: 2000,
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRightWithFade,
-      //transitionDuration: const Duration(seconds: 1),
       animationDuration: const Duration(seconds: 1),
       screenFunction: () async {
         var isAuthenticated = await AuthProtect.isTokenValid();
-        return HomeScreen(
-            authenticated: isAuthenticated ? isAuthenticated : null);
+        return HomeScreen(authenticated: isAuthenticated);
       },
     );
   }
