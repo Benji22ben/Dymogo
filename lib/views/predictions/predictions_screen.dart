@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/camera/api_service.dart';
+import 'package:dymogo/views/utilities/authProtect.dart';
 
 class PredictionScreen extends StatelessWidget {
   final XFile image;
@@ -117,11 +118,15 @@ class PredictionScreen extends StatelessWidget {
                                     label,
                                     locationData.latitude.toString(),
                                     locationData.longitude.toString())
-                                .then((value) {
+                                .then((value) async {
+                              var isAuthenticated =
+                                  await AuthProtect.isTokenValid();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => const HomeScreen(),
+                                  builder: (_) => HomeScreen(
+                                    authenticated: isAuthenticated,
+                                  ),
                                 ),
                               );
                             });

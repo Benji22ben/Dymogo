@@ -7,16 +7,14 @@ import 'package:dymogo/views/camera/camera_screen.dart';
 import 'package:dymogo/views/login/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final authenticated;
+
+  const HomeScreen({Key? key, required this.authenticated}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
-
-    // Create storage
-    // final storage = const FlutterSecureStorage();
-    // var token = await storage.read(key: 'token');
 
     return Scaffold(
         endDrawer: NavigationDrawerWidget(),
@@ -125,32 +123,34 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 14, color: kGrey),
                         ),
                       ),
-                      Container(
-                          width: screenWidth * 0.8,
-                          height: 60,
-                          margin: const EdgeInsets.only(top: 10),
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: kPrimaryColor, width: 2.0),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
-                            color: Colors.transparent,
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const LoginScreen(),
+                      authenticated
+                          ? Container(
+                              width: screenWidth * 0.8,
+                              height: 60,
+                              margin: const EdgeInsets.only(top: 10),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: kPrimaryColor, width: 2.0),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(30)),
+                                color: Colors.transparent,
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const LoginScreen(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                      fontSize: 14, color: kPrimaryColor),
                                 ),
-                              );
-                            },
-                            child: const Text(
-                              "Sign In",
-                              style:
-                                  TextStyle(fontSize: 14, color: kPrimaryColor),
-                            ),
-                          )),
+                              ))
+                          : Container(),
                       Container(
                           width: screenWidth * 0.8,
                           height: 60,

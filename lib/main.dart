@@ -9,6 +9,7 @@ import 'package:dymogo/views/home/home_screen.dart';
 import 'package:dymogo/views/utilities/locator.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:dymogo/views/utilities/authProtect.dart';
 
 late List<CameraDescription> cameras;
 Future<void> main() async {
@@ -44,20 +45,24 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
+    return AnimatedSplashScreen.withScreenFunction(
       splash: Column(
         children: [
           Image.asset('assets/images/Dymogo.png'),
         ],
       ),
       backgroundColor: kPrimaryColor,
-      nextScreen: const HomeScreen(),
       splashIconSize: 103,
       duration: 2000,
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRightWithFade,
       //transitionDuration: const Duration(seconds: 1),
       animationDuration: const Duration(seconds: 1),
+      screenFunction: () async {
+        var isAuthenticated = await AuthProtect.isTokenValid();
+        return HomeScreen(
+            authenticated: isAuthenticated ? isAuthenticated : null);
+      },
     );
   }
 }

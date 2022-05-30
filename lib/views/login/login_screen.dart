@@ -4,7 +4,6 @@ import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,9 +15,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  // Create storage
-  final storage = const FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +191,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => const HomeScreen(),
+                                  builder: (_) => const HomeScreen(
+                                    authenticated: true,
+                                  ),
                                 ),
                               );
                             },
