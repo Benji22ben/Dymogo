@@ -55,6 +55,7 @@ dependencies:
   latlong2: ^0.8.1
   location: ^4.3.0
   flutter_secure_storage: ^5.0.2
+  device_info_plus: ^3.2.3
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/views/camera/camera_screen.dart';
 import 'package:dymogo/views/login/login_screen.dart';
+import 'package:dymogo/viewmodel/signIn/sign_in_service.dart';
 
 class HomeScreen extends StatelessWidget {
   final authenticated;
@@ -107,13 +108,18 @@ class HomeScreen extends StatelessWidget {
                             color: kPrimaryColor,
                           ),
                           child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const CameraScreen(),
-                                ),
-                              );
+                            onPressed: () async {
+                              authenticated
+                                  ? Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CameraScreen()))
+                                  : await SignIn.authenticateWithMobileId()
+                                      .then((value) => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CameraScreen())));
                             },
                             child: const Text(
                               "Report",
