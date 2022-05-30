@@ -36,13 +36,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         body: Stack(
-          children: [
-            Container(
-              color: kPrimaryColor,
-            ),
-            Column(
+      children: [
+        Container(
+          color: kPrimaryColor,
+        ),
+        SingleChildScrollView(
+          child: SizedBox(
+            height: screenHeight,
+            child: Column(
               children: [
                 Align(
                   alignment: Alignment.topLeft,
@@ -275,7 +277,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ]))
               ],
             ),
-          ],
-        ));
+          ),
+        ),
+      ],
+    ));
   }
 }
