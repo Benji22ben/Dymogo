@@ -1,10 +1,6 @@
-import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:simple_shadow/simple_shadow.dart';
-import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
-import 'package:dymogo/size_config.dart';
 import 'package:dymogo/views/login/login_screen.dart';
 import 'package:dymogo/viewmodel/signUp/sign_up_service.dart';
 

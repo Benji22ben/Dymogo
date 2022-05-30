@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/views/camera/camera_screen.dart';
 import 'package:dymogo/views/login/login_screen.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

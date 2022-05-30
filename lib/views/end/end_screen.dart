@@ -1,13 +1,9 @@
-import 'package:dymogo/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
-import 'package:dymogo/size_config.dart';
-import 'package:dymogo/views/camera/camera_screen.dart';
 import 'package:dymogo/widgets/navigation_drawer_widget.dart';
-
 import 'package:dymogo/views/signup/signup_screen.dart';
 
 class EndScreen extends StatelessWidget {
@@ -15,8 +11,10 @@ class EndScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     const urlimg = 'assets/images/login_screen/bg.png';
+
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
         endDrawer: NavigationDrawerWidget(),
@@ -55,8 +53,8 @@ class EndScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: SizeConfig.screenWidth! * 0.80,
-                    height: SizeConfig.screenHeight! * 0.65,
+                    width: screenWidth * 0.80,
+                    height: screenHeight * 0.65,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(35),
                         color: Colors.white,

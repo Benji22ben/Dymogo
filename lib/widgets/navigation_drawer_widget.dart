@@ -1,6 +1,5 @@
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/views/signup/signup_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {

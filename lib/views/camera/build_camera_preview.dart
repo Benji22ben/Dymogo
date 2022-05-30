@@ -1,13 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:dymogo/views/utilities/camera_header_bar.dart';
-
 import 'package:flutter/material.dart';
 import 'build_camera_ux.dart';
-import 'package:dymogo/size_config.dart';
 
 Widget buildCameraPreview(context, _cameraController,
     Future<void> initializeControllerFuture, _cameraOn) {
-  final height = SizeConfig.screenHeight;
+  var screenHeight = MediaQuery.of(context).size.height;
+  final height = screenHeight;
   return Container(
     height: height,
     color: Colors.black,

@@ -4,7 +4,6 @@ import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
-import 'package:dymogo/viewmodel/signIn/sign_in_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -187,8 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: TextButton(
                             onPressed: () async {
-                              var token = await SignIn.signIn(
-                                      _usernameController.text,
+                              await SignIn.signIn(_usernameController.text,
                                       _passwordController.text)
                                   .then((token) => {
                                         storage.write(
