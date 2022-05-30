@@ -120,6 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
                                   ),
+                                  prefixIcon: Icon(Icons.email),
                                   fillColor: kTextInputBg,
                                   filled: true,
                                   labelText: 'Email',

@@ -135,6 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   fillColor: kTextInputBg,
                                   filled: true,
+                                  prefixIcon: Icon(Icons.email),
                                   labelText: 'Username',
                                   hintText: 'Your username'),
                               validator: (String? value) {
