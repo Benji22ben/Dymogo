@@ -6,7 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 class SignIn {
   static const String usualLogin = baseUrl + 'login';
-  static const String mobileIdLogin = baseUrl + 'login';
+  static const String mobileIdLogin = baseUrl + 'register';
 
   static Future signIn(
     String email,
