@@ -11,7 +11,6 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
-    var storage = const FlutterSecureStorage();
     var token = await storage.read(key: 'token');
     var request = MultipartRequest(
       'POST',

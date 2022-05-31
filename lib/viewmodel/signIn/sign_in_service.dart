@@ -7,6 +7,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 class SignIn {
   static const String usualLogin = baseUrl + 'login';
   static const String mobileIdLogin = baseUrl + 'register';
+  static const String logout = baseUrl + 'logout';
 
   static Future signIn(
     String email,
@@ -26,6 +27,20 @@ class SignIn {
         : null;
 
     return response.statusCode == 200 ? token : null;
+  }
+
+  static Future signOut() async {
+    var token = await storage.read(key: 'token');
+
+    var request = Request('POST', Uri.parse(logout));
+    request.headers['Content-Type'] = 'application/json';
+    request.headers['Authorization'] = 'Bearer $token';
+
+    var response = await request.send();
+
+    response.statusCode == 200 ? await storage.delete(key: 'token') : null;
+
+    return response.statusCode == 200 ? response.statusCode : null;
   }
 
   static Future authenticateWithMobileId() async {

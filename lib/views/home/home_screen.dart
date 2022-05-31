@@ -1,6 +1,7 @@
 import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:dymogo/widgets/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/views/camera/camera_screen.dart';
@@ -16,6 +17,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
+
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
     return Scaffold(
         endDrawer: NavigationDrawerWidget(),
@@ -89,10 +92,10 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       authenticated
-                          ? Container()
-                          : Container(
+                          ? Container(
                               height: 75,
-                            ),
+                            )
+                          : Container(),
                       Container(
                           width: screenWidth * 0.8,
                           height: 60,
@@ -128,16 +131,17 @@ class HomeScreen extends StatelessWidget {
                             ),
                           )),
                       authenticated
-                          ? Container(
+                          ? Container()
+                          : Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: const Text(
                                 "or",
                                 style: TextStyle(fontSize: 14, color: kGrey),
                               ),
-                            )
-                          : Container(),
+                            ),
                       authenticated
-                          ? Container(
+                          ? Container()
+                          : Container(
                               width: screenWidth * 0.8,
                               height: 60,
                               margin: const EdgeInsets.only(top: 10),
@@ -162,10 +166,12 @@ class HomeScreen extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 14, color: kPrimaryColor),
                                 ),
-                              ))
-                          : Container(),
+                              )),
                       authenticated
                           ? Container(
+                              height: 75,
+                            )
+                          : Container(
                               width: screenWidth * 0.8,
                               height: 60,
                               margin:
@@ -194,9 +200,6 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 14, color: kPrimaryColor),
                                 ),
                               ))
-                          : Container(
-                              height: 75,
-                            )
                     ],
                   ),
                 )

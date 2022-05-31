@@ -4,6 +4,7 @@ import 'package:dymogo/views/login/login_screen.dart';
 import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/authProtect.dart';
+import 'package:dymogo/viewmodel/signIn/sign_in_service.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   @override
@@ -60,7 +61,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             FutureBuilder(
               future: AuthProtect.isTokenValid(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                if (snapshot.data == false) {
+                if (snapshot.data == true) {
                   return buildMenuItem(
                     text: 'Sign out',
                     icon: Icons.logout,
@@ -108,13 +109,25 @@ class NavigationDrawerWidget extends StatelessWidget {
         ));
         break;
       case 1:
-        await storage.delete(key: "token").then((value) => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => HomeScreen(
-                        authenticated: true,
-                      )),
-            ));
+        await SignIn.signOut().then((value) => {
+              if (value == 200)
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomeScreen(
+                              authenticated: false,
+                            )),
+                  )
+                }
+              else
+                {
+                  AlertDialog(
+                    title: Text('Error'),
+                    content: Text('Erreur de déconnexion'),
+                  )
+                }
+            });
         break;
       case 2:
         Navigator.push(

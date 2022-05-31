@@ -15,15 +15,12 @@ class SignUp {
     request.headers['Content-Type'] = 'application/json';
 
     request.body = jsonEncode(<String, String>{
-      // 'name': username.replaceAll(' ', ''),
+      'name': username.replaceAll(' ', ''),
       'email': email.replaceAll(' ', ''),
       'password': password.replaceAll(' ', '')
     });
-    print(request.body);
-    print(request);
-    var response = await request.send();
 
-    print(response.statusCode);
+    var response = await request.send();
 
     return response.statusCode;
   }
