@@ -98,6 +98,9 @@ flutter:
     - assets/dymogo_ia_tflite/labels.txt
     - assets/images/login_screen/
     - assets/images/register/
+    - assets/images/profile_screen/IllustrationBG.png
+    - assets/images/profile_screen/Coin.png
+    - assets/images/profile_screen/Next.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
