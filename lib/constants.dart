@@ -11,7 +11,7 @@ const kShadow = Color(0xA6A6A640);
 const kTextInputBg = Color(0xFFF7F7F7);
 const baseUrl =
     // "http://ec2-13-38-111-132.eu-west-3.compute.amazonaws.com:8002/api/";
-    "http://localhost:8002/api/";
+    "http://localhost:8000/api/";
 
 // Create storage
 const storage = const FlutterSecureStorage();

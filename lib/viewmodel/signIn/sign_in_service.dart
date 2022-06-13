@@ -26,7 +26,11 @@ class SignIn {
         ? jsonDecode(await response.stream.bytesToString())['jwt']
         : null;
 
-    return response.statusCode == 200 ? token : null;
+    await storage.write(key: "token", value: token);
+
+    print(await storage.read(key: "token"));
+
+    return response.statusCode;
   }
 
   static Future signOut() async {
@@ -52,14 +56,20 @@ class SignIn {
     });
 
     var response = await request.send();
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      var token = jsonDecode(await response.stream.bytesToString())['jwt'];
+      if (token != null) {
+        print('Mobile ID authentication successful');
+        await storage.write(key: 'token', value: token);
+      } else {
+        authenticateWithMobileId().then((value) => print(value));
+      }
+    } else {
+      return null;
+    }
 
-    var token = response.statusCode == 200
-        ? jsonDecode(await response.stream.bytesToString())['jwt']
-        : null;
-
-    print(token);
-
-    return response.statusCode == 200 ? token : null;
+    return response.statusCode == 200 ? response.statusCode : null;
   }
 }
 

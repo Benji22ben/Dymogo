@@ -26,18 +26,16 @@ class IAService {
       model: "assets/dymogo_ia_tflite/saved_model.tflite",
     );
 
-    print(res);
-
     img.Image? oriImage = img.decodeJpg(await image.readAsBytes());
     img.Image resizedImage = img.copyResizeCropSquare(oriImage!, 224);
 
-    var output = await Tflite.runModelOnBinary(
+    List<dynamic>? output = await Tflite.runModelOnBinary(
       binary: imageToByteListFloat32(resizedImage, 224, 127.5, 127.5),
-      numResults: 3,
+      numResults: 2,
       threshold: 0.05,
     );
     Tflite.close();
 
-    return output;
+    return output?.toList();
   }
 }

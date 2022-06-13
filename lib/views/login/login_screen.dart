@@ -194,18 +194,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () async {
                                   await SignIn.signIn(_usernameController.text,
                                           _passwordController.text)
-                                      .then((token) => {
-                                            storage.write(
-                                                key: "token", value: token)
+                                      .then((statusCode) async => {
+                                            if (statusCode == 200)
+                                              {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        const HomeScreen(
+                                                      authenticated: true,
+                                                    ),
+                                                  ),
+                                                )
+                                              }
+                                            else
+                                              {print("Error")}
                                           });
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => const HomeScreen(
-                                        authenticated: true,
-                                      ),
-                                    ),
-                                  );
                                 },
                                 child: const Text(
                                   "Sign In",

@@ -22,6 +22,8 @@ class SignUp {
 
     var response = await request.send();
 
+    print(response.statusCode);
+
     return response.statusCode;
   }
 }
