@@ -18,7 +18,7 @@ class PredictionBlock extends StatelessWidget {
       children: [
         if (label == "autre")
           Text(
-            "Nous somme désolé, nous n'arrivons pas à savoir ce que vous nous montrer",
+            "We're very sorry, we don't know what you're showing us",
             textAlign: TextAlign.center,
           )
         else

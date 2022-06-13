@@ -1,4 +1,4 @@
-# dymogo
+# Dymogo
 
 Front-End part with Flutter of the Dymogo APP.
 

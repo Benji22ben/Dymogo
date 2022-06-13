@@ -216,7 +216,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         ),
                       ),
                     ),
-                    label_changed == true
+                    label_changed == true || label == 'autre'
                         ? ReportButton(
                             cameraController: _cameraController,
                             size: size,
