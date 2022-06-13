@@ -44,23 +44,27 @@ class ReportButton extends StatelessWidget {
         ),
         child: TextButton(
           onPressed: () async {
-            var locationData = await LocationService().locationGet();
+            var locationData = await LocationService.locationGet();
             await cameraController.dispose();
+            print(label);
             ApiService.uploadFileToServer(
                     image.path,
                     label,
                     locationData.latitude.toString(),
                     locationData.longitude.toString())
-                .then((value) async {
-              var isAuthenticated = await AuthProtect.isTokenValid();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => HomeScreen(
-                    authenticated: isAuthenticated,
-                  ),
-                ),
-              );
+                .then((statusCode) async {
+              if (statusCode == 200 || statusCode == 201) {
+                AuthProtect.isTokenValid().then((isAuthenticated) async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => HomeScreen(
+                        authenticated: isAuthenticated,
+                      ),
+                    ),
+                  );
+                });
+              }
             });
           },
           child: Text(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:simple_shadow/simple_shadow.dart';
+// import 'package:simple_shadow/simple_shadow.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/widgets/navigation_drawer_widget.dart';
@@ -43,15 +42,6 @@ class EndScreen extends StatelessWidget {
                 innerDistance: -105,
                 invert: true,
                 children: [
-                  SimpleShadow(
-                    opacity: 0.25,
-                    offset: const Offset(0, 1),
-                    color: kShadow,
-                    sigma: 10,
-                    child: SvgPicture.asset(
-                      "assets/images/logo.svg",
-                    ),
-                  ),
                   Container(
                     width: screenWidth * 0.80,
                     height: screenHeight * 0.65,

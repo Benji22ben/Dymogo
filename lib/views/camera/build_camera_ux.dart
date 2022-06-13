@@ -8,10 +8,10 @@ Widget buildCameraUX(
   return Padding(
     padding: const EdgeInsets.only(bottom: 20),
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-      SvgPicture.asset(
-        "assets/images/camera_screen/galerie.svg",
-        width: 60,
-      ),
+      // SvgPicture.asset(
+      //   "assets/images/camera_screen/galerie.svg",
+      //   width: 60,
+      // ),
       Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 8),
@@ -32,13 +32,13 @@ Widget buildCameraUX(
           ),
         ),
       ),
-      GestureDetector(
-        onTap: (() => {}),
-        child: SvgPicture.asset(
-          "assets/images/camera_screen/flip.svg",
-          width: 60,
-        ),
-      ),
+      // GestureDetector(
+      //   onTap: (() => {}),
+      //   child: SvgPicture.asset(
+      //     "assets/images/camera_screen/flip.svg",
+      //     width: 60,
+      //   ),
+      // ),
     ]),
   );
 }

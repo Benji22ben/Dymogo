@@ -3,7 +3,7 @@ import 'package:dymogo/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ApiService {
-  static const String apiEndpoint = baseUrl + 'create_report';
+  static const String apiEndpoint = baseUrl + 'user/createreport';
 
   static Future uploadFileToServer(
     String imagePath,
@@ -11,6 +11,14 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
+    if (folderPicture == 'Car')
+      folderPicture = 'car';
+    else if (folderPicture == 'Sewer')
+      folderPicture = 'egout';
+    else if (folderPicture == 'Waste') folderPicture = 'dechet';
+
+    print(folderPicture);
+
     var token = await storage.read(key: 'token');
     var request = MultipartRequest(
       'POST',
@@ -18,13 +26,14 @@ class ApiService {
     );
     request.headers['Authorization'] = 'Bearer $token';
     request.files.add(await MultipartFile.fromPath("picture", imagePath));
-    request.fields['folder_picture'] = folderPicture;
+    request.fields['folder_picture'] = folderPicture.toLowerCase();
     request.fields['report'] = '{}';
     request.fields['location'] =
         '{ "latitude" : "' + latitude + '", "longitude" : ' + longitude + '}';
     var response = await request.send();
     print(response.headers);
     print(response.statusCode);
-    return response;
+
+    return response.statusCode;
   }
 }

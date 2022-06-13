@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:camera/camera.dart';
 import 'package:dymogo/viewmodel/camera/ia_service.dart';
+import 'package:dymogo/views/map/map_screen.dart';
 import 'package:dymogo/views/predictions/report_button.dart';
 import 'package:flutter/material.dart';
 import 'package:dymogo/constants.dart';
@@ -24,14 +25,22 @@ class _PredictionScreenState extends State<PredictionScreen> {
   bool label_changed = false;
   String label = "";
   String percent = '';
-  List<dynamic>? _predictions;
 
   // List of items in our dropdown menu
+  // FR
+  // var items = [
+  //   'Egout',
+  //   'Dechet',
+  //   'Graffiti',
+  //   'Voiture',
+  // ];
+
+  // EN
   var items = [
-    'Egout',
-    'Dechet',
+    'Sewer',
+    'Garbage',
     'Graffiti',
-    'Voiture',
+    'Car',
   ];
 
   var randomNumber = Random().nextInt(4);
@@ -68,6 +77,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
           if (label == 'graph') {
             label = 'Graffiti';
+          } else if (label == 'voiture') {
+            label = 'Car';
+          } else if (label == 'dechet') {
+            label = 'Garbage';
+          } else if (label == 'egout') {
+            label = 'Sewer';
           }
 
           // Initial Selected Value
@@ -137,7 +152,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       margin: const EdgeInsets.only(top: 30),
                       child: label_changed == true
                           ? Text(
-                              "Is that a : ",
+                              "Is that (a)",
                               style: TextStyle(
                                 color: kDarkTextColor,
                                 fontSize: 30,
@@ -159,7 +174,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                               cameraController: _cameraController,
                               size: size,
                               image: widget.image,
-                              label: label,
+                              label: dropdownvalue,
                               text: "It's perfect !",
                             ),
                           ),
@@ -208,6 +223,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                             setState(() {
                               label_changed = true;
                               label = newValue;
+                              dropdownvalue = newValue!;
                             });
                           },
                           onSaved: (String? newValue) {
@@ -221,10 +237,27 @@ class _PredictionScreenState extends State<PredictionScreen> {
                             cameraController: _cameraController,
                             size: size,
                             image: widget.image,
-                            label: label.toString(),
+                            label: dropdownvalue,
                             text: "Yes it is !",
                           )
                         : Container(),
+                    TextButton(
+                      onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => MapScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Change address',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: kDarkTextColor,
+                        ),
+                      ),
+                    )
                   ]),
                 ),
               ),

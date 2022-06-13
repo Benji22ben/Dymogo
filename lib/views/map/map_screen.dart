@@ -1,7 +1,10 @@
+import 'package:dymogo/constants.dart';
+import 'package:dymogo/widgets/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
+import 'package:dymogo/viewmodel/map/location_service.dart';
 
 void main() {
   runApp(const MaterialApp(home: MapScreen()));
@@ -19,70 +22,62 @@ class _MapScreenState extends State<MapScreen> {
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
   late LocationData _locationData;
-  bool _isGetLocation = false;
+  late final VoidCallback latLng;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () async {
-                  _serviceEnabled = await location.serviceEnabled();
-                  if (!_serviceEnabled) {
-                    _serviceEnabled = await location.requestService();
-                    if (_serviceEnabled) return;
-                  }
-
-                  _permissionGranted = await location.hasPermission();
-                  if (_permissionGranted == PermissionStatus.denied) {
-                    _permissionGranted = await location.requestPermission();
-                    if (_permissionGranted != PermissionStatus.granted) return;
-                  }
-
-                  _locationData = await location.getLocation();
-
-                  setState(() {
-                    _isGetLocation = true;
-                  });
-                },
-                child: const Text('Récupérer localisation')),
-            _isGetLocation
-                ? Text(
-                    'Localisation: ${_locationData.latitude}/${_locationData.longitude}')
-                : Container(),
-            _isGetLocation
-                ? Flexible(
-                    child: FlutterMap(
-                    options: MapOptions(
-                        center: LatLng(
-                            _locationData.latitude!, _locationData.longitude!),
-                        zoom: 15),
-                    layers: [
-                      TileLayerOptions(
-                        urlTemplate:
-                            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                        subdomains: ['a', 'b', 'c'],
-                        attributionBuilder: (_) {
-                          return const Text("© OpenStreetMap contributors");
-                        },
+    return FutureBuilder(
+      future: LocationService.locationGet(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasError) {
+          return const Text(
+            'There was an error :(',
+          );
+        } else if (snapshot.hasData) {
+          var lat = snapshot.data.latitude;
+          var lng = snapshot.data.longitude;
+          return Scaffold(
+              endDrawer: NavigationDrawerWidget(),
+              appBar: AppBar(
+                leading: GestureDetector(
+                  onTap: () => {
+                    Navigator.pop(context),
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                    color: kDarkTextColor,
+                  ),
+                ),
+                backgroundColor: Color.fromARGB(0, 255, 255, 255),
+                elevation: 0.0,
+              ),
+              extendBodyBehindAppBar: true,
+              body: FlutterMap(
+                options: MapOptions(center: LatLng(lat, lng), zoom: 14.0),
+                layers: [
+                  TileLayerOptions(
+                    urlTemplate:
+                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    subdomains: ['a', 'b', 'c'],
+                  ),
+                  MarkerLayerOptions(
+                    markers: [
+                      Marker(
+                        width: 80.0,
+                        height: 80.0,
+                        point: LatLng(lat, lng),
+                        builder: (ctx) => Container(
+                          child: Icon(Icons.location_on),
+                        ),
                       ),
-                      MarkerLayerOptions(markers: [
-                        Marker(
-                            point: LatLng(_locationData.latitude!,
-                                _locationData.longitude!),
-                            builder: (context) => const Icon(
-                                  Icons.pin_drop,
-                                  size: 40,
-                                ))
-                      ])
                     ],
-                  ))
-                : Container()
-          ],
-        ),
-      ),
+                  ),
+                ],
+              ));
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
