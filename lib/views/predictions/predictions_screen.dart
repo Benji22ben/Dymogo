@@ -150,7 +150,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   child: Column(children: [
                     Container(
                       margin: const EdgeInsets.only(top: 30),
-                      child: label_changed == true
+                      child: label_changed == true || label == 'autre'
                           ? Text(
                               "Is that (a)",
                               style: TextStyle(

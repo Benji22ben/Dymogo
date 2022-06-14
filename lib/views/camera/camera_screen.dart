@@ -18,14 +18,21 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   late CameraController _cameraController;
   late Future<void> _initializeControllerFuture;
+  late int selectedCameraIndex;
 
   @override
   void initState() {
     super.initState();
 
+    if (cameras.length > 0) {
+      selectedCameraIndex = 0;
+    } else {
+      print('No camera available');
+    }
+
     _cameraController = CameraController(
       // Get a specific camera from the list of available cameras.
-      cameras.first,
+      cameras[selectedCameraIndex],
       // Define the resolution to use.
       ResolutionPreset.ultraHigh,
     );

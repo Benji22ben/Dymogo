@@ -1,3 +1,4 @@
+import 'package:dymogo/main.dart';
 import 'package:dymogo/viewmodel/camera/camera_service.dart';
 import 'package:dymogo/views/utilities/locator.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +33,15 @@ Widget buildCameraUX(
           ),
         ),
       ),
-      // GestureDetector(
-      //   onTap: (() => {}),
-      //   child: SvgPicture.asset(
-      //     "assets/images/camera_screen/flip.svg",
-      //     width: 60,
-      //   ),
-      // ),
+      // cameras.isEmpty
+      //     ? Container()
+      //     : GestureDetector(
+      //         onTap: (() => {}),
+      //         child: SvgPicture.asset(
+      //           "assets/images/camera_screen/flip.svg",
+      //           width: 60,
+      //         ),
+      //       ),
     ]),
   );
 }
