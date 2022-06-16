@@ -29,6 +29,8 @@ class ReportButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(label);
+
     return Container(
         width: size.width - 50,
         height: 70,

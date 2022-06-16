@@ -1,6 +1,7 @@
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/views/home/home_screen.dart';
 import 'package:dymogo/views/login/login_screen.dart';
+import 'package:dymogo/views/reports/reports_screen.dart';
 import 'package:dymogo/views/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dymogo/views/utilities/authProtect.dart';
@@ -27,7 +28,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'Reports',
               icon: Icons.add_location_sharp,
               //Changer l'index pour la redirection voulue => Se référer à la fonction selectedItem()
-              onClicked: () => selectedItem(context, 0),
+              onClicked: () => selectedItem(context, 3),
             ),
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
@@ -132,6 +133,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 2:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen()));
+        break;
+      case 3:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ReportsScreen()));
+        break;
     }
   }
 }

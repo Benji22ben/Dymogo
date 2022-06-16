@@ -11,11 +11,11 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
-    if (folderPicture == 'Car')
-      folderPicture = 'car';
-    else if (folderPicture == 'Sewer')
-      folderPicture = 'egout';
-    else if (folderPicture == 'Waste') folderPicture = 'dechet';
+    // if (folderPicture == 'Car')
+    //   folderPicture = 'car';
+    // else if (folderPicture == 'Sewer')
+    //   folderPicture = 'egout';
+    // else if (folderPicture == 'Waste') folderPicture = 'dechet';
 
     print(folderPicture);
 

@@ -24,24 +24,26 @@ class PredictionScreen extends StatefulWidget {
 class _PredictionScreenState extends State<PredictionScreen> {
   bool label_changed = false;
   String label = "";
-  String percent = '';
+  double number = 0.0;
+  ValueNotifier<bool> _notifier = ValueNotifier(false);
+  String label_value = "";
 
   // List of items in our dropdown menu
   // FR
-  // var items = [
-  //   'Egout',
-  //   'Dechet',
-  //   'Graffiti',
-  //   'Voiture',
-  // ];
+  var items = [
+    'Egout',
+    'Dechet',
+    'Graffiti',
+    'Voiture',
+  ];
 
   // EN
-  var items = [
-    'Sewer',
-    'Garbage',
-    'Graffiti',
-    'Car',
-  ];
+  // var items = [
+  //   'Sewer',
+  //   'Garbage',
+  //   'Graffiti',
+  //   'Car',
+  // ];
 
   var randomNumber = Random().nextInt(4);
 
@@ -72,26 +74,34 @@ class _PredictionScreenState extends State<PredictionScreen> {
           );
         } else if (snapshot.hasData) {
           var predictions = snapshot.data as List<dynamic>;
-          String? label = predictions[0]['label'].toString();
-          final number = predictions[0]['confidence'];
 
-          if (label == 'graph') {
-            label = 'Graffiti';
-          } else if (label == 'voiture') {
-            label = 'Car';
-          } else if (label == 'dechet') {
-            label = 'Garbage';
-          } else if (label == 'egout') {
-            label = 'Sewer';
-          }
+          label = predictions[0]['label'];
+          number = predictions[0]['confidence'];
+
+          // if (label == 'graph') {
+          //   label = 'Graffiti';
+          // } else if (label == 'voiture') {
+          //   label = 'Car';
+          // } else if (label == 'dechet') {
+          //   label = 'Garbage';
+          // } else if (label == 'egout') {
+          //   label = 'Sewer';
+          // }
 
           // Initial Selected Value
           String dropdownvalue = items[0];
-          label == 'autre'
-              ? dropdownvalue = items[randomNumber]
-              : dropdownvalue = capitalize(label);
+          if (label == 'autre') {
+            dropdownvalue = items[randomNumber];
+            label_value = dropdownvalue;
+          } else {
+            label_value = label;
+            dropdownvalue = capitalize(label);
+          }
+          print('label : ' + label);
+          print('label Value : ' + label_value);
+          print('dropdown Value : ' + dropdownvalue);
 
-          final percent = (number * 100).round().toString();
+          final percent = (number * 100).round();
 
           return Scaffold(
             endDrawer: NavigationDrawerWidget(),
@@ -125,7 +135,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     width: 250,
                     height: 75,
                     child: PredictionBlock(
-                      label: label,
+                      label: label_value,
                       percent: percent,
                     ),
                   ),
@@ -170,13 +180,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         ? Container()
                         : Visibility(
                             visible: visibility_report_button,
-                            child: ReportButton(
-                              cameraController: _cameraController,
-                              size: size,
-                              image: widget.image,
-                              label: dropdownvalue,
-                              text: "It's perfect !",
-                            ),
+                            child: ValueListenableBuilder(
+                                valueListenable: _notifier,
+                                builder: (BuildContext context, value,
+                                    Widget? child) {
+                                  return ReportButton(
+                                    cameraController: _cameraController,
+                                    size: size,
+                                    image: widget.image,
+                                    label: label_value,
+                                    text: "It's perfect !",
+                                  );
+                                }),
                           ),
                     Container(
                       width: size.width - 50,
@@ -222,8 +237,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
                             hideWidget();
                             setState(() {
                               label_changed = true;
+                              label_value = newValue!;
                               label = newValue;
-                              dropdownvalue = newValue!;
+                              dropdownvalue = newValue;
+                              _notifier.value = !_notifier.value;
                             });
                           },
                           onSaved: (String? newValue) {
@@ -233,13 +250,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       ),
                     ),
                     label_changed == true || label == 'autre'
-                        ? ReportButton(
-                            cameraController: _cameraController,
-                            size: size,
-                            image: widget.image,
-                            label: dropdownvalue,
-                            text: "Yes it is !",
-                          )
+                        ? ValueListenableBuilder(
+                            valueListenable: _notifier,
+                            builder:
+                                (BuildContext context, value, Widget? child) {
+                              return ReportButton(
+                                cameraController: _cameraController,
+                                size: size,
+                                image: widget.image,
+                                label: label_value,
+                                text: "It's perfect !",
+                              );
+                            })
                         : Container(),
                     TextButton(
                       onPressed: () async {
