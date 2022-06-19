@@ -84,7 +84,9 @@ class _CameraScreenState extends State<CameraScreen> {
                   _initializeControllerFuture, _cameraOn);
             } else {
               // Otherwise, display a loading indicator.
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                  child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
             }
           },
         ));

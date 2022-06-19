@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../viewmodel/map/location_service.dart';
 
-class ReportButton extends StatelessWidget {
+class ReportButton extends StatefulWidget {
   final cameraController;
 
   final size;
@@ -28,11 +28,18 @@ class ReportButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ReportButton> createState() => _ReportButtonState();
+}
+
+class _ReportButtonState extends State<ReportButton> {
+  bool isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
-    print(label);
+    print(lowerCase(widget.label));
 
     return Container(
-        width: size.width - 50,
+        width: widget.size.width - 50,
         height: 70,
         margin: const EdgeInsets.only(top: 20),
         decoration: BoxDecoration(
@@ -46,12 +53,14 @@ class ReportButton extends StatelessWidget {
         ),
         child: TextButton(
           onPressed: () async {
+            setState(() {
+              isLoading = true;
+            });
             var locationData = await LocationService.locationGet();
-            await cameraController.dispose();
-            print(label);
+            await widget.cameraController.dispose();
             ApiService.uploadFileToServer(
-                    image.path,
-                    label,
+                    widget.image.path,
+                    lowerCase(widget.label),
                     locationData.latitude.toString(),
                     locationData.longitude.toString())
                 .then((statusCode) async {
@@ -69,10 +78,32 @@ class ReportButton extends StatelessWidget {
               }
             });
           },
-          child: Text(
-            text,
-            style: TextStyle(fontSize: 18, color: Colors.white),
-          ),
+          child: isLoading
+              ? Row(children: [
+                  Text(
+                    "Reporting...",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                  Container(
+                      width: 20,
+                      height: 20,
+                      margin: const EdgeInsets.only(left: 10),
+                      child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white))),
+                ])
+              : Text(
+                  widget.text,
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
         ));
   }
+}
+
+String lowerCase(String string) {
+  if (string.isEmpty) {
+    return string;
+  }
+
+  return string[0].toLowerCase() + string.substring(1);
 }

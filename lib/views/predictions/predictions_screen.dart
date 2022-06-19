@@ -78,8 +78,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
           label = predictions[0]['label'];
           number = predictions[0]['confidence'];
 
-          // if (label == 'graph') {
-          //   label = 'Graffiti';
+          if (label == 'graph') {
+            label = 'graffiti';
+          }
           // } else if (label == 'voiture') {
           //   label = 'Car';
           // } else if (label == 'dechet') {
@@ -90,13 +91,15 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
           // Initial Selected Value
           String dropdownvalue = items[0];
-          if (label == 'autre') {
-            dropdownvalue = items[randomNumber];
-            label_value = dropdownvalue;
-          } else {
-            label_value = label;
-            dropdownvalue = capitalize(label);
+
+          if (label_value != '') {
+            dropdownvalue = label_value;
           }
+
+          if (label != 'autre' && dropdownvalue != label_value) {
+            dropdownvalue = label;
+          }
+
           print('label : ' + label);
           print('label Value : ' + label_value);
           print('dropdown Value : ' + dropdownvalue);
@@ -135,7 +138,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     width: 250,
                     height: 75,
                     child: PredictionBlock(
-                      label: label_value,
+                      label: label,
                       percent: percent,
                     ),
                   ),
@@ -188,7 +191,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
                                     cameraController: _cameraController,
                                     size: size,
                                     image: widget.image,
-                                    label: label_value,
+                                    label: label_value != ''
+                                        ? label_value
+                                        : label != 'autre'
+                                            ? label
+                                            : dropdownvalue,
                                     text: "It's perfect !",
                                   );
                                 }),
@@ -217,7 +224,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                             ),
                           ),
                           alignment: Alignment.center,
-                          value: dropdownvalue,
+                          value: capitalize(dropdownvalue),
                           icon: Icon(
                             Icons.arrow_drop_down,
                             color: Colors.black,
@@ -245,6 +252,13 @@ class _PredictionScreenState extends State<PredictionScreen> {
                           },
                           onSaved: (String? newValue) {
                             hideWidget();
+                            setState(() {
+                              label_changed = true;
+                              label_value = newValue!;
+                              label = newValue;
+                              dropdownvalue = newValue;
+                              _notifier.value = !_notifier.value;
+                            });
                           },
                         ),
                       ),
@@ -258,7 +272,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
                                 cameraController: _cameraController,
                                 size: size,
                                 image: widget.image,
-                                label: label_value,
+                                label: label_value != ''
+                                    ? label_value
+                                    : label != 'autre'
+                                        ? label
+                                        : dropdownvalue,
                                 text: "It's perfect !",
                               );
                             })
