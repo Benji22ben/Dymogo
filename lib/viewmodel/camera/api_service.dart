@@ -1,6 +1,10 @@
-import 'package:http/http.dart';
+import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:dymogo/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ApiService {
   static const String apiEndpoint = baseUrl + 'user/createreport';
@@ -11,13 +15,7 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
-    // if (folderPicture == 'Car')
-    //   folderPicture = 'car';
-    // else if (folderPicture == 'Sewer')
-    //   folderPicture = 'egout';
-    // else if (folderPicture == 'Waste') folderPicture = 'dechet';
-
-    print(folderPicture);
+    File imageCompressed = await compressAndGetFile(imagePath);
 
     var token = await storage.read(key: 'token');
     var request = MultipartRequest(
@@ -25,7 +23,8 @@ class ApiService {
       Uri.parse(apiEndpoint),
     );
     request.headers['Authorization'] = 'Bearer $token';
-    request.files.add(await MultipartFile.fromPath("picture", imagePath));
+    request.files
+        .add(await MultipartFile.fromPath("picture", imageCompressed.path));
     request.fields['folder_picture'] = folderPicture.toLowerCase();
     request.fields['report'] = '{}';
     request.fields['location'] =
@@ -35,5 +34,22 @@ class ApiService {
     print(response.statusCode);
 
     return response.statusCode;
+  }
+
+  static Future<File> compressAndGetFile(String imagePath) async {
+    File file = File(imagePath);
+    final dir = await getTemporaryDirectory();
+
+    var result = await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path,
+      dir.absolute.path + "/temp.jpg",
+      quality: 40,
+      rotate: 0,
+    );
+
+    print(file.lengthSync());
+    print(result!.lengthSync());
+
+    return result;
   }
 }

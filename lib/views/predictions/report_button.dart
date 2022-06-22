@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/camera/api_service.dart';
+import 'package:dymogo/viewmodel/camera/camera_service.dart';
 import 'package:dymogo/views/home/home_screen.dart';
 import 'package:dymogo/views/utilities/authProtect.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,7 @@ class _ReportButtonState extends State<ReportButton> {
                     locationData.longitude.toString())
                 .then((statusCode) async {
               if (statusCode == 200 || statusCode == 201) {
+                await CameraService.closeCamera(widget.cameraController);
                 AuthProtect.isTokenValid().then((isAuthenticated) async {
                   Navigator.push(
                     context,

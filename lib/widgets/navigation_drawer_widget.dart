@@ -66,7 +66,23 @@ class NavigationDrawerWidget extends StatelessWidget {
                   return buildMenuItem(
                     text: 'Sign out',
                     icon: Icons.logout,
-                    onClicked: () => selectedItem(context, 1),
+                    onClicked: () async {
+                      var signed_out = await SignIn.signOut();
+                      if (signed_out == 200) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen(
+                                    authenticated: false,
+                                  )),
+                        );
+                      } else {
+                        AlertDialog(
+                          title: Text('Error'),
+                          content: Text('Erreur de déconnexion'),
+                        );
+                      }
+                    },
                   );
                 } else {
                   return buildMenuItem(
@@ -109,27 +125,23 @@ class NavigationDrawerWidget extends StatelessWidget {
           builder: (context) => const SignUpScreen(),
         ));
         break;
-      case 1:
-        await SignIn.signOut().then((value) => {
-              if (value == 200)
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomeScreen(
-                              authenticated: false,
-                            )),
-                  )
-                }
-              else
-                {
-                  AlertDialog(
-                    title: Text('Error'),
-                    content: Text('Erreur de déconnexion'),
-                  )
-                }
-            });
-        break;
+      // case 1: Not working as intended
+      //   var signed_out = await SignIn.signOut();
+      //   if (signed_out == 200) {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (context) => HomeScreen(
+      //                 authenticated: false,
+      //               )),
+      //     );
+      //   } else {
+      //     AlertDialog(
+      //       title: Text('Error'),
+      //       content: Text('Erreur de déconnexion'),
+      //     );
+      //   }
+      //   break;
       case 2:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen()));

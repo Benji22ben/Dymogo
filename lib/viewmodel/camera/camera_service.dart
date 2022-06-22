@@ -40,7 +40,7 @@ class CameraService {
     }
   }
 
-  Future closeCamera(CameraController _cameraController) async {
+  static Future closeCamera(CameraController _cameraController) async {
     if (_cameraController.value.isStreamingImages) {
       await _cameraController.stopImageStream();
     }

@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       authenticated
                           ? Container(
-                              height: 75,
+                              height: 25,
                             )
                           : Container(),
                       Container(
@@ -117,12 +117,7 @@ class HomeScreen extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => CameraScreen()))
-                                  : await SignIn.authenticateWithMobileId()
-                                      .then((value) => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  CameraScreen())));
+                                  : showAlertDialog(context);
                             },
                             child: const Text(
                               "Report",
@@ -208,4 +203,50 @@ class HomeScreen extends StatelessWidget {
           ],
         ));
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Annulé"),
+    onPressed: () => Navigator.pop(context),
+  );
+  Widget connectButton = TextButton(
+    child: Text("Se connecter"),
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const LoginScreen(),
+        ),
+      );
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("Continuer"),
+    onPressed: () async {
+      await SignIn.authenticateWithMobileId().then((value) => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CameraScreen())));
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Déconnecté"),
+    content: Text(
+        "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegardé vos alertes."),
+    actions: [
+      cancelButton,
+      connectButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

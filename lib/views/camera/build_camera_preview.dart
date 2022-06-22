@@ -10,7 +10,7 @@ Widget buildCameraPreview(context, _cameraController,
     height: height,
     color: Colors.black,
     child: Padding(
-      padding: const EdgeInsets.only(top: 60, bottom: 0),
+      padding: const EdgeInsets.only(top: 50, bottom: 50),
       child: Stack(children: [
         SizedBox(
           height: height,

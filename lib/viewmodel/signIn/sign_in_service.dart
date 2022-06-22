@@ -34,7 +34,7 @@ class SignIn {
   }
 
   static Future signOut() async {
-    var token = await storage.read(key: 'token');
+    var token = await storage.read(key: "token");
 
     var request = Request('POST', Uri.parse(logout));
     request.headers['Content-Type'] = 'application/json';
@@ -42,9 +42,13 @@ class SignIn {
 
     var response = await request.send();
 
-    response.statusCode == 200 ? await storage.delete(key: 'token') : null;
-
-    return response.statusCode == 200 ? response.statusCode : null;
+    if (response.statusCode == 200) {
+      await storage.delete(key: "token");
+      return response.statusCode;
+    } else {
+      print(response.statusCode);
+      return response.statusCode;
+    }
   }
 
   static Future authenticateWithMobileId() async {

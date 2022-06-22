@@ -21,7 +21,7 @@ class IAService {
   }
 
   static Future recognizeImageBinary(XFile image) async {
-    String? res = await Tflite.loadModel(
+    await Tflite.loadModel(
       labels: "assets/dymogo_ia_tflite/labels.txt",
       model: "assets/dymogo_ia_tflite/saved_model.tflite",
     );
