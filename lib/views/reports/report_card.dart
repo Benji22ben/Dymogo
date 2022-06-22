@@ -1,21 +1,23 @@
+import 'package:dymogo/models/Report.dart';
 import 'package:flutter/material.dart';
 
 class ReportCard extends StatelessWidget {
-  final report;
+  final Report report;
   const ReportCard({Key? key, required this.report}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
-      child: Column(
+      color: Colors.white,
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      elevation: 0.0,
+      child: Row(
         children: [
-          ListTile(
-            title: Text(
-              report.id.toString(),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          )
+          Text(
+            report.type,
+            style: TextStyle(fontSize: 20),
+          ),
         ],
       ),
     );

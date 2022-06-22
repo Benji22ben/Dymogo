@@ -11,8 +11,8 @@ class ReportService {
     List<Report> reports = [];
     var token = await storage.read(key: 'token');
     var request = Request('GET', Uri.parse(apiEndpoint + getUserUuid(token)));
-    request.headers['Content-Type'] = 'application/json';
     request.headers['Authorization'] = 'Bearer $token';
+
     var response = await request.send();
 
     if (response.statusCode == 200) {
@@ -23,6 +23,7 @@ class ReportService {
     } else {
       print(response.statusCode);
     }
+    print(reports);
 
     return reports;
   }
