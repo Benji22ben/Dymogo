@@ -73,7 +73,7 @@ class SignIn {
       return null;
     }
 
-    return response.statusCode == 200 ? response.statusCode : null;
+    return response.statusCode;
   }
 }
 

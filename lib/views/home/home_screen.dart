@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(top: 30, left: 25),
                           child: const Text(
-                            "WELCOME",
+                            "BONJOUR",
                             style: TextStyle(
                               color: kDarkTextColor,
                               fontSize: 40,
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(left: 25),
                           child: const Text(
-                            "Do you want to report something ?",
+                            "Vous pouvez dès maintenant signalez un incident",
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -120,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                                   : showAlertDialog(context);
                             },
                             child: const Text(
-                              "Report",
+                              "Signaler",
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                           : Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: const Text(
-                                "or",
+                                "ou",
                                 style: TextStyle(fontSize: 14, color: kGrey),
                               ),
                             ),
@@ -157,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                                 child: const Text(
-                                  "Sign In",
+                                  "Connexion",
                                   style: TextStyle(
                                       fontSize: 14, color: kPrimaryColor),
                                 ),
@@ -190,7 +190,7 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                                 child: const Text(
-                                  "Sign Up",
+                                  "Inscription",
                                   style: TextStyle(
                                       fontSize: 14, color: kPrimaryColor),
                                 ),
@@ -208,11 +208,11 @@ class HomeScreen extends StatelessWidget {
 showAlertDialog(BuildContext context) {
   // set up the buttons
   Widget cancelButton = TextButton(
-    child: Text("Cancel"),
+    child: Text("Annuler"),
     onPressed: () => Navigator.pop(context),
   );
   Widget connectButton = TextButton(
-    child: Text("Sign In"),
+    child: Text("Connexion"),
     onPressed: () {
       Navigator.push(
         context,
@@ -223,7 +223,7 @@ showAlertDialog(BuildContext context) {
     },
   );
   Widget continueButton = TextButton(
-    child: Text("Continue"),
+    child: Text("Continuer"),
     onPressed: () async {
       await SignIn.authenticateWithMobileId().then((value) => Navigator.push(
           context, MaterialPageRoute(builder: (context) => CameraScreen())));
@@ -232,10 +232,10 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Not authenticated"),
+    title: Text("Déconnecté"),
     content: Text(
-        // "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegardé vos alertes."
-        "Please note that you are not authenticated. We will still create an account in relation to this device to save your alerts."),
+        "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegardé vos alertes."),
+    // "Please note that you are not authenticated. We will still create an account in relation to this device to save your alerts."),
     actions: [
       cancelButton,
       connectButton,

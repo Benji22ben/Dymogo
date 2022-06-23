@@ -61,7 +61,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40, left: 40),
                   child: Text(
-                    'Recents Reports',
+                    'Signalements Récents',
                     style: TextStyle(color: kDarkTextColor, fontSize: 20),
                   ),
                 ),
@@ -126,7 +126,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Text(
-                              "Total Reports",
+                              "Signalements",
                               style: TextStyle(
                                 color: kDarkTextColor,
                                 fontSize: 15,
@@ -154,7 +154,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                                 if (snapshot.hasData) {
                                   return Text(
                                       snapshot.data.length.toString() +
-                                          " reports",
+                                          " signalements",
                                       style: TextStyle(
                                           color: kDarkTextColor,
                                           fontSize: 30,

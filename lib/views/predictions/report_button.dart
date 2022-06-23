@@ -83,7 +83,7 @@ class _ReportButtonState extends State<ReportButton> {
           child: isLoading
               ? Row(children: [
                   Text(
-                    "Reporting...",
+                    "Signalement en cours...",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   Container(

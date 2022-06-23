@@ -32,10 +32,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
   // List of items in our dropdown menu
   // FR
   var items = [
-    'Egout',
-    'Dechet',
+    "Bouche d'égouts",
+    'Déchets',
     'Graffiti',
-    'Voiture',
+    'Parking dangereux',
   ];
 
   // EN
@@ -80,15 +80,14 @@ class _PredictionScreenState extends State<PredictionScreen> {
           number = predictions[0]['confidence'];
 
           if (label == 'graph') {
-            label = 'graffiti';
+            label = 'Graffiti';
+          } else if (label == 'voiture') {
+            label = 'Parking dangereux';
+          } else if (label == 'dechet') {
+            label = 'Déchets';
+          } else if (label == 'egout') {
+            label = "Bouche d'égouts";
           }
-          // } else if (label == 'voiture') {
-          //   label = 'Car';
-          // } else if (label == 'dechet') {
-          //   label = 'Garbage';
-          // } else if (label == 'egout') {
-          //   label = 'Sewer';
-          // }
 
           // Initial Selected Value
           String dropdownvalue = items[0];
@@ -166,14 +165,14 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       margin: const EdgeInsets.only(top: 30),
                       child: label_changed == true || label == 'autre'
                           ? Text(
-                              "Your showing us : ",
+                              "Catégorie :",
                               style: TextStyle(
                                 color: kDarkTextColor,
                                 fontSize: 30,
                               ),
                             )
                           : Text(
-                              "Is that correct ?",
+                              "Est-ce correct ?",
                               style: TextStyle(
                                 color: kDarkTextColor,
                                 fontSize: 30,
@@ -197,7 +196,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                                         : label != 'autre'
                                             ? label
                                             : dropdownvalue,
-                                    text: "It's perfect !",
+                                    text: "Envoyer",
                                   );
                                 }),
                           ),
@@ -278,7 +277,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                                     : label != 'autre'
                                         ? label
                                         : dropdownvalue,
-                                text: "It's perfect !",
+                                text: "Envoyer",
                               );
                             })
                         : Container(),
@@ -292,7 +291,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         );
                       },
                       child: Text(
-                        'Change address',
+                        'Localisation',
                         style: TextStyle(
                           fontSize: 15,
                           color: kDarkTextColor,

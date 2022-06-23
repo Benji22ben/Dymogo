@@ -25,7 +25,7 @@ class _PredictionBlockState extends State<PredictionBlock> {
       children: [
         if (widget.label == "autre")
           Text(
-            "We're sorry, we didn't recognize your image",
+            "Nous n'arrivons pas à joindre votre signalement à une catégorie",
             textAlign: TextAlign.center,
           )
         else

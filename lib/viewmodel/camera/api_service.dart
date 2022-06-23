@@ -15,6 +15,19 @@ class ApiService {
     String latitude,
     String longitude,
   ) async {
+    if (folderPicture == 'Graffiti' || folderPicture == 'graffiti') {
+      folderPicture = 'graph';
+    } else if (folderPicture == 'Parking dangereux' ||
+        folderPicture == 'parking dangereux') {
+      folderPicture = 'voiture';
+    } else if (folderPicture == 'Déchets' || folderPicture == 'déchets') {
+      folderPicture = 'dechet';
+    } else if (folderPicture == "Bouche d'égouts" ||
+        folderPicture == "bouche d'égouts") {
+      folderPicture = "egout";
+    }
+
+    print(folderPicture);
     File imageCompressed = await compressAndGetFile(imagePath);
 
     var token = await storage.read(key: 'token');

@@ -9,6 +9,16 @@ class ReportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime date = DateTime.now();
+    String type = report.type;
+    if (type == 'graph') {
+      type = 'Graffiti';
+    } else if (type == 'voiture') {
+      type = 'Parking dangereux';
+    } else if (type == 'dechet') {
+      type = 'Déchets';
+    } else if (type == 'egout') {
+      type = "Bouche d'égouts";
+    }
     return Card(
       color: Colors.white,
       semanticContainer: true,
@@ -47,7 +57,7 @@ class ReportCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                capitalize(report.type),
+                capitalize(type),
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               Text(

@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Container(
                               margin: const EdgeInsets.only(top: 30, left: 25),
                               child: const Text(
-                                "Welcome",
+                                "Bonjour",
                                 style: TextStyle(
                                   color: kDarkTextColor,
                                   fontSize: 40,
@@ -93,26 +93,26 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
+                          // Align(
+                          //   alignment: Alignment.topLeft,
+                          //   child: Container(
+                          //     margin: const EdgeInsets.only(left: 25),
+                          //     child: const Text(
+                          //       "Back",
+                          //       style: TextStyle(
+                          //         color: kDarkTextColor,
+                          //         fontSize: 40,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           Align(
                             alignment: Alignment.topLeft,
                             child: Container(
                               margin: const EdgeInsets.only(left: 25),
                               child: const Text(
-                                "Back",
-                                style: TextStyle(
-                                  color: kDarkTextColor,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 25),
-                              child: const Text(
-                                "Log In to your account",
+                                "Rentrez votre adresse e-mail et votre mot de passe",
                                 style: TextStyle(
                                   color: kDarkTextColor,
                                   fontSize: 16,
@@ -136,8 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fillColor: kTextInputBg,
                                   filled: true,
                                   prefixIcon: Icon(Icons.email),
-                                  labelText: 'Username',
-                                  hintText: 'Your username'),
+                                  labelText: "Adresse e-mail",
+                                  hintText: 'Votre adresse e-mail'),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your username';
@@ -166,8 +166,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   helperStyle: TextStyle(
                                       color: kDarkTextColor, fontSize: 11),
                                   prefixIcon: Icon(Icons.lock),
-                                  labelText: 'Password',
-                                  hintText: 'Your password'),
+                                  labelText: 'Mot de passe',
+                                  hintText: 'Votre mot de passe'),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
@@ -212,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           });
                                 },
                                 child: const Text(
-                                  "Sign In",
+                                  "Connexion",
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                 ),
@@ -223,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'No account ?',
+                                  "Vous n'avez pas de compte ?",
                                   style: TextStyle(
                                       color: kDarkTextColor, fontSize: 11),
                                 ),
@@ -237,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   },
                                   child: const Text(
-                                    'Sign up',
+                                    'Inscrivez-vous',
                                     style: TextStyle(
                                         color: kPrimaryColor, fontSize: 11),
                                   ),

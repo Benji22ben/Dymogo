@@ -17,7 +17,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           children: <Widget>[
             const SizedBox(height: 100),
             buildMenuItem(
-              text: 'Profile',
+              text: 'Profil',
               icon: Icons.account_circle_outlined,
               //Changer l'index pour la redirection voulue => Se référer à la fonction selectedItem()
               onClicked: () => selectedItem(context, 0),
@@ -25,7 +25,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
             buildMenuItem(
-              text: 'Reports',
+              text: 'Signalements',
               icon: Icons.add_location_sharp,
               //Changer l'index pour la redirection voulue => Se référer à la fonction selectedItem()
               onClicked: () => selectedItem(context, 3),
@@ -33,7 +33,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
             buildMenuItem(
-              text: 'Success',
+              text: 'Succès',
               icon: Icons.dashboard_outlined,
               //Changer l'index pour la redirection voulue => Se référer à la fonction selectedItem()
               onClicked: () => selectedItem(context, 0),
@@ -41,7 +41,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
             buildMenuItem(
-              text: 'Settings',
+              text: 'Paramètres',
               icon: Icons.settings,
               //Changer l'index pour la redirection voulue => Se référer à la fonction selectedItem()
               onClicked: () => selectedItem(context, 0),
@@ -49,7 +49,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             Divider(
                 color: Colors.white70, thickness: 1, indent: 20, endIndent: 20),
             buildMenuItem(
-              text: 'Privacy\nPoliticy',
+              text: 'Politique de confidentialité',
               icon: Icons.article_rounded,
               //Changer l'index pour la redirection voulue => Se référer à la fonction selectedItem()
               onClicked: () => selectedItem(context, 0),

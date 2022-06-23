@@ -85,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: Container(
                               margin: const EdgeInsets.only(top: 30, left: 25),
                               child: const Text(
-                                "Hello",
+                                "Bienvenue",
                                 style: TextStyle(
                                   color: kDarkTextColor,
                                   fontSize: 40,
@@ -99,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: Container(
                               margin: const EdgeInsets.only(left: 25),
                               child: const Text(
-                                "Register a new account",
+                                "Inscrivez-vous pour commencer",
                                 style: TextStyle(
                                   color: kDarkTextColor,
                                   fontSize: 16,
@@ -123,8 +123,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   prefixIcon: Icon(Icons.email),
                                   fillColor: kTextInputBg,
                                   filled: true,
-                                  labelText: 'Email',
-                                  hintText: 'Your Email'),
+                                  labelText: 'Adresse email',
+                                  hintText: 'Votre adresse email'),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your Email';
@@ -152,8 +152,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   helperStyle: TextStyle(
                                       color: kDarkTextColor, fontSize: 11),
                                   prefixIcon: Icon(Icons.lock),
-                                  labelText: 'Password',
-                                  hintText: 'Your password'),
+                                  labelText: 'Mot de passe',
+                                  hintText: 'Votre mot de passe'),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
@@ -181,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   helperStyle: TextStyle(
                                       color: kDarkTextColor, fontSize: 11),
                                   prefixIcon: Icon(Icons.lock),
-                                  labelText: 'Confirm Password',
+                                  labelText: 'Confirmer votre mot de passe',
                                   hintText: 'Type the password a second time'),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
@@ -247,7 +247,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }
                                 },
                                 child: const Text(
-                                  "Sign Up",
+                                  "Inscription",
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                 ),
@@ -258,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'No account ?',
+                                  'Vous avez déjà un compte ?',
                                   style: TextStyle(
                                       color: kDarkTextColor, fontSize: 11),
                                 ),
@@ -272,7 +272,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     );
                                   },
                                   child: const Text(
-                                    'Sign in',
+                                    'Connectez-vous',
                                     style: TextStyle(
                                         color: kPrimaryColor, fontSize: 11),
                                   ),
