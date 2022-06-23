@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:dymogo/constants.dart';
 import 'package:dymogo/widgets/navigation_drawer_widget.dart';
 import 'package:dymogo/views/predictions/prediction_block.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PredictionScreen extends StatefulWidget {
   final XFile image;
@@ -134,7 +135,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                           color: Colors.white,
                         ),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(35))),
+                            const BorderRadius.all(Radius.circular(20))),
                     width: 250,
                     height: 75,
                     child: PredictionBlock(
@@ -165,7 +166,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       margin: const EdgeInsets.only(top: 30),
                       child: label_changed == true || label == 'autre'
                           ? Text(
-                              "Is that (a)",
+                              "Your showing us : ",
                               style: TextStyle(
                                 color: kDarkTextColor,
                                 fontSize: 30,
@@ -304,7 +305,19 @@ class _PredictionScreenState extends State<PredictionScreen> {
             ]),
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+              child: Stack(
+            children: [
+              Image.file(File(widget.image.path)),
+              Container(
+                height: size.height,
+                width: size.width,
+                color: kPrimaryColor.withAlpha(50),
+              ),
+              CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor)),
+            ],
+          ));
         }
       },
     );

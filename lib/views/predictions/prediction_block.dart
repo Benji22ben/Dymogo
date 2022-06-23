@@ -1,3 +1,4 @@
+import 'package:dymogo/constants.dart';
 import 'package:dymogo/viewmodel/map/location_service.dart';
 import 'package:flutter/material.dart';
 
@@ -32,19 +33,30 @@ class _PredictionBlockState extends State<PredictionBlock> {
         // widget.label != "autre"
         //     ? Text(widget.percent + '%')
         //     : Container(),
-        FutureBuilder(
-          future: LocationService.getAddress(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text(
-                'There was an error :(',
-              );
-            } else if (snapshot.hasData) {
-              return Text(snapshot.data.toString());
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: FutureBuilder(
+            future: LocationService.getAddress(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Text(
+                  'There was an error :(',
+                );
+              } else if (snapshot.hasData) {
+                return Text(snapshot.data.toString());
+              } else {
+                return const Center(
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(kPrimaryColor)),
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ],
     );

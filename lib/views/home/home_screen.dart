@@ -208,11 +208,11 @@ class HomeScreen extends StatelessWidget {
 showAlertDialog(BuildContext context) {
   // set up the buttons
   Widget cancelButton = TextButton(
-    child: Text("Annuler"),
+    child: Text("Cancel"),
     onPressed: () => Navigator.pop(context),
   );
   Widget connectButton = TextButton(
-    child: Text("Se connecter"),
+    child: Text("Sign In"),
     onPressed: () {
       Navigator.push(
         context,
@@ -223,7 +223,7 @@ showAlertDialog(BuildContext context) {
     },
   );
   Widget continueButton = TextButton(
-    child: Text("Continuer"),
+    child: Text("Continue"),
     onPressed: () async {
       await SignIn.authenticateWithMobileId().then((value) => Navigator.push(
           context, MaterialPageRoute(builder: (context) => CameraScreen())));

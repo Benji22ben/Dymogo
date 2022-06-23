@@ -35,10 +35,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
       ),
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
-        physics: ScrollPhysics(parent: BouncingScrollPhysics()),
         child: Container(
           color: Colors.white,
-          height: screenHeight,
+          // height: screenHeight,
           child: Stack(children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,18 +55,6 @@ class _ReportsScreenState extends State<ReportsScreen> {
                     ),
                   ),
                 ),
-                // Container(
-                //   height: screenHeight * 0.75,
-                //   width: screenWidth,
-                //   color: Colors.white,
-                //   child: Container(
-                //     margin: EdgeInsets.only(top: screenHeight * 0.15, left: 25),
-                //     child: Text(
-                //       'Recents Reports',
-                //       style: TextStyle(color: kDarkTextColor, fontSize: 20),
-                //     ),
-                //   ),
-                // ),
                 SizedBox(
                   height: 50,
                 ),
@@ -97,7 +84,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                           });
                     } else {
                       return Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(kPrimaryColor)),
                       );
                     }
                   },

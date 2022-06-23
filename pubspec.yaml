@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
 
   # Camera package
-  camera:
+  camera: ^0.9.8+1
 
   # Not used for now
   # provider: ^6.0.2

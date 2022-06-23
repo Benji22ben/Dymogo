@@ -76,7 +76,9 @@ class _MapScreenState extends State<MapScreen> {
                 ],
               ));
         }
-        return const Center(child: CircularProgressIndicator());
+        return const Center(
+            child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor)));
       },
     );
   }
