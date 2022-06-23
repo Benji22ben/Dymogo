@@ -38,6 +38,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
         physics: ScrollPhysics(parent: BouncingScrollPhysics()),
         child: Container(
           color: Colors.white,
+          height: screenHeight,
           child: Stack(children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +83,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       var reports = snapshot.data;
-
+                      reports = reports.reversed.toList();
                       return ListView.builder(
                           physics: ClampingScrollPhysics(),
                           shrinkWrap: true,

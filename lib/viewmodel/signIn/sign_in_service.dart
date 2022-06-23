@@ -41,9 +41,9 @@ class SignIn {
     request.headers['Authorization'] = 'Bearer $token';
 
     var response = await request.send();
+    await storage.delete(key: "token");
 
     if (response.statusCode == 200) {
-      await storage.delete(key: "token");
       return response.statusCode;
     } else {
       print(response.statusCode);

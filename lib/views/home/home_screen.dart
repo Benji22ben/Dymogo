@@ -208,7 +208,7 @@ class HomeScreen extends StatelessWidget {
 showAlertDialog(BuildContext context) {
   // set up the buttons
   Widget cancelButton = TextButton(
-    child: Text("Annulé"),
+    child: Text("Annuler"),
     onPressed: () => Navigator.pop(context),
   );
   Widget connectButton = TextButton(
@@ -232,9 +232,10 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Déconnecté"),
+    title: Text("Not authenticated"),
     content: Text(
-        "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegardé vos alertes."),
+        // "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegardé vos alertes."
+        "Please note that you are not authenticated. We will still create an account in relation to this device to save your alerts."),
     actions: [
       cancelButton,
       connectButton,
