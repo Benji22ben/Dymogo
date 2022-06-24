@@ -17,8 +17,8 @@ class ApiService {
   ) async {
     if (folderPicture == 'Graffiti' || folderPicture == 'graffiti') {
       folderPicture = 'graph';
-    } else if (folderPicture == 'Parking dangereux' ||
-        folderPicture == 'parking dangereux') {
+    } else if (folderPicture == 'stationnement dangereux' ||
+        folderPicture == 'Stationnement dangereux') {
       folderPicture = 'voiture';
     } else if (folderPicture == 'Déchets' || folderPicture == 'déchets') {
       folderPicture = 'dechet';
@@ -43,7 +43,7 @@ class ApiService {
     request.fields['location'] =
         '{ "latitude" : "' + latitude + '", "longitude" : ' + longitude + '}';
     var response = await request.send();
-    print(response.headers);
+    print(await response.stream.toBytes().toString());
     print(response.statusCode);
 
     return response.statusCode;

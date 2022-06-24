@@ -35,7 +35,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
     "Bouche d'égouts",
     'Déchets',
     'Graffiti',
-    'Parking dangereux',
+    'Stationnement dangereux',
   ];
 
   // EN
@@ -82,7 +82,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
           if (label == 'graph') {
             label = 'Graffiti';
           } else if (label == 'voiture') {
-            label = 'Parking dangereux';
+            label = 'Stationnement dangereux';
           } else if (label == 'dechet') {
             label = 'Déchets';
           } else if (label == 'egout') {

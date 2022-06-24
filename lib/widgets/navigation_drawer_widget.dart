@@ -64,7 +64,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (snapshot.data == true) {
                   return buildMenuItem(
-                    text: 'Sign out',
+                    text: 'Déconnexion',
                     icon: Icons.logout,
                     onClicked: () async {
                       var signed_out = await SignIn.signOut();
@@ -86,7 +86,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   );
                 } else {
                   return buildMenuItem(
-                    text: 'Sign in',
+                    text: 'Connexion',
                     icon: Icons.login,
                     onClicked: () => selectedItem(context, 2),
                   );

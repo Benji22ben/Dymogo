@@ -13,7 +13,7 @@ class ReportCard extends StatelessWidget {
     if (type == 'graph') {
       type = 'Graffiti';
     } else if (type == 'voiture') {
-      type = 'Parking dangereux';
+      type = 'Stationnement';
     } else if (type == 'dechet') {
       type = 'Déchets';
     } else if (type == 'egout') {

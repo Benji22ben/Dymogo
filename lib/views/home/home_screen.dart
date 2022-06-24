@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(left: 25),
                           child: const Text(
-                            "Vous pouvez dès maintenant signalez un incident",
+                            "Vous pouvez dès maintenant signaler un incident",
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -234,7 +234,7 @@ showAlertDialog(BuildContext context) {
   AlertDialog alert = AlertDialog(
     title: Text("Déconnecté"),
     content: Text(
-        "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegardé vos alertes."),
+        "Attention vous n'êtes pas authentifié. Nous créerons tout de même un compte en relation avec cet appareil afin de sauvegarder vos alertes."),
     // "Please note that you are not authenticated. We will still create an account in relation to this device to save your alerts."),
     actions: [
       cancelButton,
